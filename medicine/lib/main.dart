@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return GetMaterialApp(
       builder: (context, child) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, child!),
           maxWidth: 1200,
@@ -28,21 +28,18 @@ class MyApp extends StatelessWidget {
             const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
           ],
           background: Container(color: const Color(0xFFF5F5F5))),
-      providers: [],
-      child: GetMaterialApp(
-        title: 'Medicine',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: "Open Sans",
-          backgroundColor: Colors.white,
-          scaffoldBackgroundColor: Colors.white,
-        ),
-        scrollBehavior: MyCustomScrollBehavior(),
-        home: MyHomePage(),
-        routes: {
-          //define routes here
-        },
+      title: 'Medicine',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: "Open Sans",
+        backgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
       ),
+      scrollBehavior: MyCustomScrollBehavior(),
+      home: MyHomePage(),
+      routes: {
+        //define routes here
+      },
     );
   }
 }
