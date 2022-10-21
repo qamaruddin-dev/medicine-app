@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.0.4
   google_fonts: ^3.0.1
   flutter_svg: ^1.1.5
+  flutter_custom_clippers: ^2.0.0
   font_awesome_flutter: ^10.2.1
 
 dev_dependencies:
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/
     - assets/svg_icons/
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

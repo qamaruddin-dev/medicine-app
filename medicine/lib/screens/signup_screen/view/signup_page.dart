@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.12,
-                color: appColor.withOpacity(.8),
+                color: appColor.withOpacity(.9),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.height * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.06,
                       child: Row(
                         children: [
                           SizedBox(
@@ -129,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.height * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.06,
                       child: Row(
                         children: [
                           SizedBox(
@@ -184,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.height * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.06,
                       child: Row(
                         children: [
                           SizedBox(
@@ -239,9 +239,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.55,
-                  height: MediaQuery.of(context).size.height * 0.07,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   decoration: BoxDecoration(
-                    color: appColor.withOpacity(.8),
+                    color: buttonColor.withOpacity(.9),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(

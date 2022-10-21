@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.12,
-                color: appColor.withOpacity(.8),
+                color: appColor.withOpacity(.9),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -45,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: 15,
                     ),
                     Text(
-                      'Signup',
+                      'Login',
                       style: GoogleFonts.openSans(
                           fontSize: 22,
                           color: Colors.white,
@@ -79,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.height * 0.08,
+                          height: MediaQuery.of(context).size.height * 0.06,
                           child: Row(
                             children: [
                               SizedBox(
@@ -134,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.height * 0.08,
+                          height: MediaQuery.of(context).size.height * 0.06,
                           child: Row(
                             children: [
                               SizedBox(
@@ -190,17 +192,17 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Transform.scale(
                       scale: 1,
-                      child: Checkbox(
-                          activeColor: Colors.red,
-                          checkColor: Colors.white,
-                          value: rememberMe,
-                          onChanged: (bool? val) {
-                            print(val);
-                            setState(() {
-                              rememberMe = val!;
-                            });
-                          }
-                      ),
+                      child: Consumer<LoginProvider>(builder: (BuildContext context, value, Widget? child) {
+                        return Checkbox(
+                            activeColor: Colors.red,
+                            checkColor: Colors.white,
+                            value: value.rememberMe,
+                            splashRadius: 30,
+                            onChanged: (val) {
+                              value.updateRememberMe(val!);
+                            }
+                        );
+                      },),
                     ),
                     Text(
                       'Remember me',
@@ -221,14 +223,14 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.55,
-                  height: MediaQuery.of(context).size.height * 0.07,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   decoration: BoxDecoration(
-                    color: appColor.withOpacity(.8),
+                    color: buttonColor.withOpacity(.9),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
                     child: Text(
-                      'Sign Up',
+                      'Login',
                       style: GoogleFonts.openSans(
                           fontSize: 15,
                           color: Colors.white,
