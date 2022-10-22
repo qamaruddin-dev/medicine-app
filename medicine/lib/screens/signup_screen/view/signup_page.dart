@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/login_screen/view/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -258,12 +259,17 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
-              Text(
-                'Already have an account? Login',
-                style: GoogleFonts.openSans(
-                    fontSize: 12,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                child: Text(
+                  'Already have an account? Login',
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),

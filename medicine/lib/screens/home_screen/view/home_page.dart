@@ -37,6 +37,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        width: 45,
+        height: 45,
+        child: FittedBox(
+          child: FloatingActionButton(
+            onPressed: (){},
+            backgroundColor: appColor.withOpacity(.8),
+            child: Icon(
+              Icons.add,
+              size: 50,
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Stack(
           children: [
@@ -49,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.2,
                     decoration:  BoxDecoration(
-                      color: appColor.withOpacity(.8),
+                      color: appColor.withOpacity(.9),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -388,6 +402,7 @@ class _HomePageState extends State<HomePage> {
                     width: MediaQuery.of(context).size.width * 0.85,
                     height: MediaQuery.of(context).size.height * 0.6,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: brownishColor,width: .2)
                     ),
                     child: Column(
@@ -498,6 +513,7 @@ class _HomePageState extends State<HomePage> {
                       width: MediaQuery.of(context).size.width * 0.85,
                       height: MediaQuery.of(context).size.height * 0.3,
                       decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: brownishColor,width: .2)
                       ),
                       child: Column(

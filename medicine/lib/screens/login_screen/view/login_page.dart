@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/add_medication/view/addMedication_page.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
+import 'package:medicine/screens/signup_screen/view/signup_page.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,13 +16,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final formGlobalKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool rememberMe = true;
   @override
   Widget build(BuildContext context) {
-    final formGlobalKey = GlobalKey<FormState>();
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-    bool rememberMe = true;
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -103,6 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: InputDecoration(
                                     enabledBorder: InputBorder.none,
                                     focusedBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    focusedErrorBorder: InputBorder.none,
                                     hintText: 'Email',
                                     hintStyle: GoogleFonts.openSans(
                                         fontSize: 14,
@@ -157,6 +160,8 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: InputDecoration(
                                     enabledBorder: InputBorder.none,
                                     focusedBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    focusedErrorBorder: InputBorder.none,
                                     hintText: 'Password',
                                     hintStyle: GoogleFonts.openSans(
                                         fontSize: 14,
@@ -219,7 +224,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: (){
-                  formGlobalKey.currentState!.validate();
+                  if(formGlobalKey.currentState!.validate()){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddMedicationPage()));
+                  }
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.55,
@@ -311,12 +318,17 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
-              Text(
-                'Need an account? Signup',
-                style: GoogleFonts.openSans(
-                    fontSize: 12,
-                    color: brownishColor,
-                    fontWeight: FontWeight.w600),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                },
+                child: Text(
+                  'Need an account? Signup',
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: brownishColor,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),

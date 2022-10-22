@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:medicine/screens/add_medication/addMedication_provider/addMedication_provider.dart';
 import 'package:medicine/screens/add_medication/view/addMedication_page.dart';
+import 'package:medicine/screens/appointments_screen/appointment_provider/appointment_provider.dart';
+import 'package:medicine/screens/appointments_screen/view/appointment_screen.dart';
 import 'package:medicine/screens/home_screen/homePage_provider/homePage_provider.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
 import 'package:medicine/screens/login_screen/view/login_page.dart';
 import 'package:medicine/screens/main_tab.dart';
 import 'package:medicine/screens/medication_form/medicationForm_provider/medicationForm_provider.dart';
 import 'package:medicine/screens/medication_form/view/medicationForm_page.dart';
+import 'package:medicine/screens/medication_screen/medication_provider/medication_provider.dart';
 import 'package:medicine/screens/medication_strength/medicationStrength_provider/medicationStrength_provider.dart';
 import 'package:medicine/screens/medication_strength/view/medicationStrength_page.dart';
+import 'package:medicine/screens/more_screen/morePage_provider/morepage_provider.dart';
 import 'package:medicine/screens/signup_screen/signup_provider/signup_provider.dart';
 import 'package:medicine/screens/signup_screen/view/signup_page.dart';
+import 'package:medicine/screens/updates_screen/updates_provider/updates_provider.dart';
 import 'package:medicine/screens/why_medication/view/whyMedication_page.dart';
 import 'package:medicine/screens/why_medication/whyMedication_provider/whyMedication_provider.dart';
 import 'package:medicine/services/Scroll_behavior.dart';
@@ -37,6 +42,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: MedicationStrengthProvider()),
         ChangeNotifierProvider.value(value: WhyMedicationProvider()),
         ChangeNotifierProvider.value(value: HomePageProvider()),
+        ChangeNotifierProvider.value(value: UpdatesProvider()),
+        ChangeNotifierProvider.value(value: MedicationProvider()),
+        ChangeNotifierProvider.value(value: MoreProvider()),
+        ChangeNotifierProvider.value(value: AppointmentProvider()),
       ],
       child: GetMaterialApp(
         builder: (context, child) => ResponsiveWrapper.builder(
@@ -60,7 +69,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         scrollBehavior: MyCustomScrollBehavior(),
-        home: const WhyMedicationPage(),
+        home: const LoginPage(),
         routes: {
           //define routes here
         },

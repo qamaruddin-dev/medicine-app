@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/home_screen/view/home_page.dart';
+import 'package:medicine/screens/medication_screen/view/medication_screen.dart';
+import 'package:medicine/screens/more_screen/view/more_screen.dart';
+import 'package:medicine/screens/updates_screen/view/updates_page.dart';
 import 'package:medicine/screens/why_medication/view/whyMedication_page.dart';
 
 class MainTab extends StatefulWidget {
@@ -15,9 +18,9 @@ class _MainTabState extends State<MainTab> {
   int _currentIndex = 0;
   List<Widget> screens = [
     const HomePage(),
-    const WhyMedicationPage(),
-    const WhyMedicationPage(),
-    const WhyMedicationPage(),
+    const UpdatesPage(),
+    const MedicationPage(),
+    const MoreScreen(),
   ];
 
   @override

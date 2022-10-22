@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/medication_strength/view/medicationStrength_page.dart';
 
 class AddMedicationPage extends StatefulWidget {
   const AddMedicationPage({Key? key}) : super(key: key);
@@ -95,20 +96,25 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.45,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.55,
-                height: MediaQuery.of(context).size.height * 0.06,
-                decoration: BoxDecoration(
-                  color: buttonColor.withOpacity(.9),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: Text(
-                    'Next',
-                    style: GoogleFonts.openSans(
-                        fontSize: 19,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MedicationStrengthPage()));
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.55,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  decoration: BoxDecoration(
+                    color: appColor.withOpacity(.8),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Next',
+                      style: GoogleFonts.openSans(
+                          fontSize: 19,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400),
+                    ),
                   ),
                 ),
               ),

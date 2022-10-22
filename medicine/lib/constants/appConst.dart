@@ -8,3 +8,5 @@ const buttonColor = Color(0xFF547DE9);
 const tabIconColor = Color(0xFFD58B8B);
 const brownishColor = Color(0xff707070);
 const yellowishColor = Color(0xffE8B070);
+const pillColor = Color(0xffE37B2B);
+const appGreenColor = Color(0xffA0DE0E);
