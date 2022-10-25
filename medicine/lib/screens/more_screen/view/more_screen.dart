@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/appointments_screen/view/appointment_screen.dart';
+import 'package:medicine/screens/doctors_screen/view/doctor_screen.dart';
 import 'package:medicine/screens/home_screen/view/home_page.dart';
+import 'package:medicine/screens/refill_screen/view/refill_screen.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -23,7 +26,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.2,
                 decoration: BoxDecoration(
-                  color: appColor.withOpacity(.9),
+                  color: appColor.withOpacity(.58),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -35,14 +38,17 @@ class _MoreScreenState extends State<MoreScreen> {
                         children: [
                           Image.asset('assets/icons/profile_icon.png'),
                           SizedBox(
-                            width: 10,
+                            width: 15,
                           ),
-                          Text(
-                            'Ahsan',
-                            style: GoogleFonts.openSans(
-                                fontSize: 19,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: Text(
+                              'Ahsan',
+                              style: GoogleFonts.openSans(
+                                  fontSize: 19,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ],
                       ),
@@ -62,7 +68,9 @@ class _MoreScreenState extends State<MoreScreen> {
             moreWidgetRow(
               text: 'Appointments',
               image: 'assets/icons/appointment_icon.png',
-              tab: (){},
+              tab: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AppointmentScreen()));
+              },
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
@@ -70,14 +78,18 @@ class _MoreScreenState extends State<MoreScreen> {
             moreWidgetRow(
               text: 'Doctors',
               image: 'assets/icons/doctor_icon.png',
-              tab: (){}
+              tab: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorScreen()));
+              }
             ),SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
             moreWidgetRow(
               text: 'Refill',
               image: 'assets/icons/refill_icon.png',
-              tab: (){},
+              tab: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const RefillScreen()));
+              },
             ),SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),

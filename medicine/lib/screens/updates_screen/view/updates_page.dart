@@ -24,7 +24,7 @@ class _UpdatesPageState extends State<UpdatesPage> {
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.2,
                 decoration:  BoxDecoration(
-                  color: appColor.withOpacity(.9),
+                  color: appColor.withOpacity(.58),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -32,34 +32,28 @@ class _UpdatesPageState extends State<UpdatesPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset('assets/icons/profile_icon.png'),
-                      Padding(
-                        padding:  const EdgeInsets.only(top: 20.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Welcome Back,',
-                              style: GoogleFonts.openSans(
-                                  fontSize: 19,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Text(
+                      Row(
+                        children: [
+                          Image.asset('assets/icons/profile_icon.png'),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: Text(
                               'Ahsan',
                               style: GoogleFonts.openSans(
                                   fontSize: 19,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10,right: 10),
-                        child: Image.asset('assets/icons/notification_icon.png'),
+                        padding: const EdgeInsets.only(top: 10, right: 10),
+                        child:
+                        Image.asset('assets/icons/notification_icon.png'),
                       ),
                     ],
                   ),
@@ -67,7 +61,7 @@ class _UpdatesPageState extends State<UpdatesPage> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
             Center(
               child: Text(
@@ -124,9 +118,12 @@ class _UpdatesPageState extends State<UpdatesPage> {
                                   height: MediaQuery.of(context).size.height * 0.03,
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Image.asset('assets/icons/pills_icon.png',scale: .8,color: pillColor,),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
+                                      child: Image.asset('assets/icons/pills_icon.png',scale: .8,color: pillColor,),
+                                    ),
                                     Column(
                                       children: [
                                         Text(
@@ -145,11 +142,14 @@ class _UpdatesPageState extends State<UpdatesPage> {
                                         ),
                                       ],
                                     ),
-                                    Text(
-                                      '8:00 AM',
-                                      style: GoogleFonts.openSans(
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w400),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                                      child: Text(
+                                        '8:00 AM',
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w400),
+                                      ),
                                     ),
                                   ],
                                 ),

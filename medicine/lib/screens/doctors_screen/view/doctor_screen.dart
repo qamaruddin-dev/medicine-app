@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
-import 'package:medicine/screens/appointments_screen/view/add_appintments.dart';
+import 'package:medicine/screens/doctors_screen/view/addDoctor_screen.dart';
 
-class AppointmentScreen extends StatefulWidget {
-  const AppointmentScreen({Key? key}) : super(key: key);
+class DoctorScreen extends StatefulWidget {
+  const DoctorScreen({Key? key}) : super(key: key);
 
   @override
-  _AppointmentScreenState createState() => _AppointmentScreenState();
+  _DoctorScreenState createState() => _DoctorScreenState();
 }
 
-class _AppointmentScreenState extends State<AppointmentScreen> {
+class _DoctorScreenState extends State<DoctorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     width: 15,
                   ),
                   Text(
-                    'Appointments',
+                    'Doctors',
                     style: GoogleFonts.openSans(
                         fontSize: 22,
                         color: Colors.white,
@@ -51,14 +51,14 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
             Column(
               children: [
                 Text(
-                  'Manage your appointments',
+                  'Add your doctor',
                   style: GoogleFonts.openSans(
                       fontSize: 22,
                       color: Colors.black.withOpacity(.50),
                       fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  'Arrange your appointments for meeting',
+                  'Search for your doctors to set appointment',
                   style: GoogleFonts.openSans(
                       fontSize: 11,
                       color: Colors.black.withOpacity(.40),
@@ -77,7 +77,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   ),
                   child: GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAppointments()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const AddDoctor()));
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.55,
@@ -88,7 +88,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                       ),
                       child: Center(
                         child: Text(
-                          'Add an appointments',
+                          'Add a doctor',
                           style: GoogleFonts.openSans(
                               fontSize: 15,
                               color: Colors.white,

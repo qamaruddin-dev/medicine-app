@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.12,
-                color: appColor.withOpacity(.9),
+                color: appColor.withOpacity(.58),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -112,17 +112,17 @@ class _LoginPageState extends State<LoginPage> {
                                         color: Color(0xff707070),
                                         fontWeight: FontWeight.w400),
                                   ),
-                                  validator: (val){
-                                    if(val!.isEmpty){
-                                      return 'Field Required';
-                                    }
-                                    if (!RegExp(r'\S+@\S+\.\S+').hasMatch(val)) {
-                                      return "Please enter a valid email address";
-                                    }
-                                    else{
-                                      return null;
-                                    }
-                                  },
+                                  // validator: (val){
+                                  //   if(val!.isEmpty){
+                                  //     return 'Field Required';
+                                  //   }
+                                  //   if (!RegExp(r'\S+@\S+\.\S+').hasMatch(val)) {
+                                  //     return "Please enter a valid email address";
+                                  //   }
+                                  //   else{
+                                  //     return null;
+                                  //   }
+                                  // },
                                 ),
                               )
                             ],
@@ -168,17 +168,17 @@ class _LoginPageState extends State<LoginPage> {
                                         color: Color(0xff707070),
                                         fontWeight: FontWeight.w400),
                                   ),
-                                  validator: (val){
-                                    if(val!.isEmpty){
-                                      return 'Field Required';
-                                    }
-                                    if(val.length < 8){
-                                      return 'Password should be greater than 8 digit';
-                                    }
-                                    else{
-                                      return null;
-                                    }
-                                  },
+                                  // validator: (val){
+                                  //   if(val!.isEmpty){
+                                  //     return 'Field Required';
+                                  //   }
+                                  //   if(val.length < 8){
+                                  //     return 'Password should be greater than 8 digit';
+                                  //   }
+                                  //   else{
+                                  //     return null;
+                                  //   }
+                                  // },
                                 ),
                               )
                             ],
@@ -224,15 +224,21 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: (){
-                  if(formGlobalKey.currentState!.validate()){
+                  if(_emailController.text.isEmpty || _passwordController.text.isEmpty){
+                    showToast(text: 'Kindly fill all field', context: context);
+                  }else if(_passwordController.text.length < 8){
+                    showToast(text: 'Password should greater than 8 digit', context: context);
+                  } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(_emailController.text)) {
+                    showToast(text: 'Kindly enter valid email', context: context);
+                  }else{
                     Navigator.push(context, MaterialPageRoute(builder: (context) => AddMedicationPage()));
                   }
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.55,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   height: MediaQuery.of(context).size.height * 0.05,
                   decoration: BoxDecoration(
-                    color: buttonColor.withOpacity(.9),
+                    color: buttonColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
@@ -320,7 +326,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
                 },
                 child: Text(
                   'Need an account? Signup',

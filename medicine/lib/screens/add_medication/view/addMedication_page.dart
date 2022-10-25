@@ -21,26 +21,40 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.17,
-                color: appColor.withOpacity(.9),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                color: appColor.withOpacity(.58),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.03,
+                    Padding(
+                      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04,left: 10),
+                      child: Icon(
+                        Icons.arrow_back_sharp,
+                        color: Colors.white,
+                      ),
                     ),
-                    Text(
-                      'Add Your Medication',
-                      style: GoogleFonts.openSans(
-                          fontSize: 22,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                        Text(
+                          'Add Your Medication',
+                          style: GoogleFonts.openSans(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Image.asset('assets/icons/medical_box.png'),
+                      ],
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.01,
-                    ),
-                    Image.asset('assets/icons/medical_box.png'),
+                    Text('')
                   ],
-                ),
+                )
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.1,
@@ -101,10 +115,10 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => MedicationStrengthPage()));
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.55,
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.06,
                   decoration: BoxDecoration(
-                    color: appColor.withOpacity(.8),
+                    color: buttonColor,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Center(

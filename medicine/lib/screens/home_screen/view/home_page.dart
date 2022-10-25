@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         child: FittedBox(
           child: FloatingActionButton(
             onPressed: (){},
-            backgroundColor: appColor.withOpacity(.8),
+            backgroundColor: calenderColor,
             child: Icon(
               Icons.add,
               size: 50,
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.2,
                     decoration:  BoxDecoration(
-                      color: appColor.withOpacity(.9),
+                      color: appColor.withOpacity(.58),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -106,10 +106,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Container(
-                  height: 120,
+                  height: 100,
                   child: ListView.builder(
                     itemCount: 7,
                     scrollDirection: Axis.horizontal,
@@ -122,32 +122,38 @@ class _HomePageState extends State<HomePage> {
                               _currentIndex = index;
                             });
                           },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            height: 100,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: appColor.withOpacity(.8)
+                          child: Card(
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  days[index],
-                                  style: GoogleFonts.openSans(
-                                      fontSize: 11,
-                                      color: _currentIndex == index ? Colors.white : yellowishColor,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Text(
-                                  date[index],
-                                  style: GoogleFonts.openSans(
-                                      fontSize: 11,
-                                      color: _currentIndex == index ? Colors.white : yellowishColor,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.112,
+                              // height: MediaQuery.of(context).size.height * 0.08,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: _currentIndex == index ?  calenderColor : Colors.white,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    days[index],
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 11,
+                                        color: _currentIndex == index ? Colors.white : yellowishColor,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    date[index],
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 11,
+                                        color: _currentIndex == index ? Colors.white : yellowishColor,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -167,10 +173,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Card(
-                  elevation: .5,
+                  elevation: .3,
                   child: Container(
                     width: double.infinity,
                     height: 5,
@@ -229,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.07),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    border: Border.all(width: .5,color: Colors.black38),
+                                    border: Border.all(width: .2,color: Colors.black38),
                                     borderRadius: BorderRadius.circular(10)
                                 ),
                                 child: Column(

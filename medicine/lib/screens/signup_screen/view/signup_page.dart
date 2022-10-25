@@ -27,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.12,
-                color: appColor.withOpacity(.9),
+                color: appColor.withOpacity(.58),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -236,13 +236,19 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               GestureDetector(
                 onTap: (){
-                  formGlobalKey.currentState!.validate();
+                  if(_emailController.text.isEmpty || _passwordController.text.isEmpty){
+                    showToast(text: 'Kindly fill all field', context: context);
+                  }else if(_passwordController.text.length < 8){
+                    showToast(text: 'Password should greater than 8 digit', context: context);
+                  } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(_emailController.text)) {
+                    showToast(text: 'Kindly enter valid email', context: context);
+                  }
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.55,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   height: MediaQuery.of(context).size.height * 0.05,
                   decoration: BoxDecoration(
-                    color: buttonColor.withOpacity(.9),
+                    color: buttonColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(

@@ -4,6 +4,7 @@ import 'package:medicine/screens/add_medication/addMedication_provider/addMedica
 import 'package:medicine/screens/add_medication/view/addMedication_page.dart';
 import 'package:medicine/screens/appointments_screen/appointment_provider/appointment_provider.dart';
 import 'package:medicine/screens/appointments_screen/view/appointment_screen.dart';
+import 'package:medicine/screens/doctors_screen/doctor_provider/doctor_provider.dart';
 import 'package:medicine/screens/home_screen/homePage_provider/homePage_provider.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
 import 'package:medicine/screens/login_screen/view/login_page.dart';
@@ -14,6 +15,7 @@ import 'package:medicine/screens/medication_screen/medication_provider/medicatio
 import 'package:medicine/screens/medication_strength/medicationStrength_provider/medicationStrength_provider.dart';
 import 'package:medicine/screens/medication_strength/view/medicationStrength_page.dart';
 import 'package:medicine/screens/more_screen/morePage_provider/morepage_provider.dart';
+import 'package:medicine/screens/refill_screen/refill_provider/refill_provider.dart';
 import 'package:medicine/screens/signup_screen/signup_provider/signup_provider.dart';
 import 'package:medicine/screens/signup_screen/view/signup_page.dart';
 import 'package:medicine/screens/updates_screen/updates_provider/updates_provider.dart';
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: MedicationProvider()),
         ChangeNotifierProvider.value(value: MoreProvider()),
         ChangeNotifierProvider.value(value: AppointmentProvider()),
+        ChangeNotifierProvider.value(value: DoctorProvider()),
+        ChangeNotifierProvider.value(value: RefillProvider()),
       ],
       child: GetMaterialApp(
         builder: (context, child) => ResponsiveWrapper.builder(

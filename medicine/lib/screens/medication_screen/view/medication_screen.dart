@@ -29,7 +29,7 @@ class _MedicationPageState extends State<MedicationPage> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.2,
                   decoration: BoxDecoration(
-                    color: appColor.withOpacity(.9),
+                    color: appColor.withOpacity(0.58),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -37,35 +37,28 @@ class _MedicationPageState extends State<MedicationPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset('assets/icons/profile_icon.png'),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Welcome Back,',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 19,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text(
+                        Row(
+                          children: [
+                            Image.asset('assets/icons/profile_icon.png'),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: Text(
                                 'Ahsan',
                                 style: GoogleFonts.openSans(
                                     fontSize: 19,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10, right: 10),
                           child:
-                              Image.asset('assets/icons/notification_icon.png'),
+                          Image.asset('assets/icons/notification_icon.png'),
                         ),
                       ],
                     ),
@@ -73,7 +66,7 @@ class _MedicationPageState extends State<MedicationPage> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               Center(
                 child: Text(
@@ -126,7 +119,7 @@ class _MedicationPageState extends State<MedicationPage> {
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      width: .5, color: Colors.black38),
+                                      width: .2, color: Colors.black38),
                                   borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
@@ -136,11 +129,14 @@ class _MedicationPageState extends State<MedicationPage> {
                                   ),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Image.asset(
-                                        'assets/icons/capsule_icon.png',
-                                        color: appGreenColor,
+                                      Padding(
+                                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
+                                        child: Image.asset(
+                                          'assets/icons/capsule_icon.png',
+                                          color: appGreenColor,
+                                        ),
                                       ),
                                       Column(
                                         children: [
@@ -160,94 +156,95 @@ class _MedicationPageState extends State<MedicationPage> {
                                           ),
                                         ],
                                       ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Card(
-                                            elevation: 2,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
-                                            ),
-                                            child: GestureDetector(
-                                              onTap: (){
-                                                setState(() {
-                                                  suspend = true;
-                                                });
-                                              },
-                                              child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.12,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.03,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    color:
-                                                        appColor.withOpacity(.7)),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Suspend',
-                                                    style: GoogleFonts.openSans(
-                                                        fontSize: 8,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                                        child: Column(
+                                          children: [
+                                            Card(
+                                              elevation: 2,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(100.0),
+                                              ),
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  setState(() {
+                                                    suspend = true;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.12,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.03,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
+                                                      color:
+                                                          calenderColor),
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Suspend',
+                                                      style: GoogleFonts.openSans(
+                                                          fontSize: 8,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Card(
-                                            elevation: 2,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
+                                            SizedBox(
+                                              height: 10,
                                             ),
-                                            child: GestureDetector(
-                                              onTap: (){
-                                                setState(() {
-                                                  refill = true;
-                                                });
-                                              },
-                                              child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.12,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.03,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    color:
-                                                        appColor.withOpacity(.7)),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Refill',
-                                                    style: GoogleFonts.openSans(
-                                                        fontSize: 8,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                            Card(
+                                              elevation: 2,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(100.0),
+                                              ),
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  setState(() {
+                                                    refill = true;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.12,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.03,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
+                                                      color:
+                                                      calenderColor),
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Refill',
+                                                      style: GoogleFonts.openSans(
+                                                          fontSize: 8,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -266,20 +263,27 @@ class _MedicationPageState extends State<MedicationPage> {
                 ),
               ),
               Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  decoration: BoxDecoration(
-                    color: appColor.withOpacity(.8),
-                    borderRadius: BorderRadius.circular(100),
+                child: Card(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.circular(100.0),
                   ),
-                  child: Center(
-                    child: Text(
-                      'Add a med',
-                      style: GoogleFonts.openSans(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    height: MediaQuery.of(context).size.height * 0.055,
+                    decoration: BoxDecoration(
+                      color: calenderColor,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Add a med',
+                        style: GoogleFonts.openSans(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),

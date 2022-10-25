@@ -22,7 +22,7 @@ class _MedicationStrengthPageState extends State<MedicationStrengthPage> {
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.17,
-                color: appColor.withOpacity(.9),
+                color: appColor.withOpacity(.58),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -182,10 +182,10 @@ class _MedicationStrengthPageState extends State<MedicationStrengthPage> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => WhyMedicationPage()));
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.55,
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.06,
                   decoration: BoxDecoration(
-                    color: appColor.withOpacity(.8),
+                    color: buttonColor,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Center(
