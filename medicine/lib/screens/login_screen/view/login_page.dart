@@ -19,7 +19,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final formGlobalKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool rememberMe = true;
   String emailErrorText = '';
@@ -234,16 +233,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: (){
-                  formGlobalKey.currentState!.validate();
-                  // if(_emailController.text.isEmpty || _passwordController.text.isEmpty){
-                  //   showToast(text: 'Kindly fill all field', context: context);
-                  // }else if(_passwordController.text.length < 8){
-                  //   showToast(text: 'Password should greater than 8 digit', context: context);
-                  // } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(_emailController.text)) {
-                  //   showToast(text: 'Kindly enter valid email', context: context);
-                  // }else{
-                  //   Navigator.push(context, MaterialPageRoute(builder: (context) => AddMedicationPage()));
-                  // }
+                  if(_emailController.text.isEmpty){
+                    setState(() {
+                      emailErrorText = 'Can\'t be empty';
+                    });
+                  }else if(_passwordController.text.isEmpty){
+                    setState(() {
+                      passwordErrorText = 'Can\'t be empty';
+                    });
+                  }else{
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AddMedicationPage()));
+                  }
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.45,
