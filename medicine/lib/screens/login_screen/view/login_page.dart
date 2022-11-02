@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/helper/validation.dart';
 import 'package:medicine/screens/add_medication/view/addMedication_page.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
 import 'package:medicine/screens/signup_screen/view/signup_page.dart';
@@ -18,8 +19,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final formGlobalKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool rememberMe = true;
+  String emailErrorText = '';
+  String passwordErrorText = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
               Form(
                   key: formGlobalKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Card(
                         elevation: 5,
@@ -112,25 +118,27 @@ class _LoginPageState extends State<LoginPage> {
                                         color: Color(0xff707070),
                                         fontWeight: FontWeight.w400),
                                   ),
-                                  // validator: (val){
-                                  //   if(val!.isEmpty){
-                                  //     return 'Field Required';
-                                  //   }
-                                  //   if (!RegExp(r'\S+@\S+\.\S+').hasMatch(val)) {
-                                  //     return "Please enter a valid email address";
-                                  //   }
-                                  //   else{
-                                  //     return null;
-                                  //   }
-                                  // },
+                                  onChanged: (text){
+                                   String result =  validateEmail(text);
+                                   setState(() {
+                                     emailErrorText = result;
+                                   });
+                                  },
                                 ),
                               )
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(
+                      emailErrorText.isEmpty ? SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
+                      ) : Text(
+                        emailErrorText,
+                        style: GoogleFonts.openSans(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.red
+                        ),
                       ),
                       Card(
                         elevation: 5,
@@ -168,28 +176,30 @@ class _LoginPageState extends State<LoginPage> {
                                         color: Color(0xff707070),
                                         fontWeight: FontWeight.w400),
                                   ),
-                                  // validator: (val){
-                                  //   if(val!.isEmpty){
-                                  //     return 'Field Required';
-                                  //   }
-                                  //   if(val.length < 8){
-                                  //     return 'Password should be greater than 8 digit';
-                                  //   }
-                                  //   else{
-                                  //     return null;
-                                  //   }
-                                  // },
+                                  onChanged: (text){
+                                    String result =  validatePassword(text);
+                                    setState(() {
+                                      passwordErrorText = result;
+                                    });
+                                  },
                                 ),
                               )
                             ],
                           ),
                         ),
                       ),
+                      passwordErrorText.isEmpty ? SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ) : Text(
+                        passwordErrorText,
+                        style: GoogleFonts.openSans(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.red
+                        ),
+                      ),
                     ],
                   )
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
               ),
               Padding(
                 padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * .15),
@@ -224,15 +234,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: (){
-                  if(_emailController.text.isEmpty || _passwordController.text.isEmpty){
-                    showToast(text: 'Kindly fill all field', context: context);
-                  }else if(_passwordController.text.length < 8){
-                    showToast(text: 'Password should greater than 8 digit', context: context);
-                  } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(_emailController.text)) {
-                    showToast(text: 'Kindly enter valid email', context: context);
-                  }else{
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddMedicationPage()));
-                  }
+                  formGlobalKey.currentState!.validate();
+                  // if(_emailController.text.isEmpty || _passwordController.text.isEmpty){
+                  //   showToast(text: 'Kindly fill all field', context: context);
+                  // }else if(_passwordController.text.length < 8){
+                  //   showToast(text: 'Password should greater than 8 digit', context: context);
+                  // } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(_emailController.text)) {
+                  //   showToast(text: 'Kindly enter valid email', context: context);
+                  // }else{
+                  //   Navigator.push(context, MaterialPageRoute(builder: (context) => AddMedicationPage()));
+                  // }
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.45,
