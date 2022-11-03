@@ -5,6 +5,7 @@ import 'package:medicine/screens/appointments_screen/view/appointment_screen.dar
 import 'package:medicine/screens/doctors_screen/view/doctor_screen.dart';
 import 'package:medicine/screens/home_screen/view/home_page.dart';
 import 'package:medicine/screens/refill_screen/view/refill_screen.dart';
+import 'package:medicine/screens/setting_screen/view/setting_screen.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -96,7 +97,9 @@ class _MoreScreenState extends State<MoreScreen> {
             moreWidgetRow(
               text: 'Setting',
               image: 'assets/icons/setting_icon.png',
-              tab: (){},
+              tab: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingScreen()));
+              },
             ),SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),

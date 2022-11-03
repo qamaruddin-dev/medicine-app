@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         scrollBehavior: MyCustomScrollBehavior(),
-        home: const LoginPage(),
+        home: const MainTab(),
         routes: {
           //define routes here
         },
