@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/about_screen/view/about_screen.dart';
 import 'package:medicine/screens/basic_setting/view/basicSetting_screen.dart';
+import 'package:medicine/screens/feedback_screen/view/feedback_screen.dart';
+import 'package:medicine/screens/passcode_screen/view/passcode_screen.dart';
+import 'package:medicine/screens/rateus_screen/view/rateus_screen.dart';
 import 'package:medicine/screens/setting_screen/view/widgets.dart';
+import 'package:medicine/screens/verificationcode_screen/view/verificationcode_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -104,7 +109,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   rowWithIconText(context: context,text: 'Passcode',image: 'assets/icons/passcode_icon.png',
-                      tab: (){}),
+                      tab: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const PasscodeScreen()));
+                      }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
@@ -114,7 +121,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   rowWithIconText(context: context,text: 'Verification Code',image: 'assets/icons/verificationcode_icon.png',
-                      tab: (){}),
+                      tab: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const VerificationScreen()));
+                      }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
@@ -157,15 +166,21 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Rate us',image: 'assets/icons/rateus_icon.png',tab: (){}),
+                  rowWithIconText(context: context,text: 'Rate us',image: 'assets/icons/rateus_icon.png',tab: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RateUs()));
+                  }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Send Feedback',image: 'assets/icons/feedback_icon.png',tab: (){}),
+                  rowWithIconText(context: context,text: 'Send Feedback',image: 'assets/icons/feedback_icon.png',tab: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FeedbackScreen()));
+                  }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'About',image: 'assets/icons/about_icon.png',tab: (){}),
+                  rowWithIconText(context: context,text: 'About',image: 'assets/icons/about_icon.png',tab: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutScreen()));
+                  }),
 
                 ],
               ),
