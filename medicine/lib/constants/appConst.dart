@@ -14,6 +14,7 @@ const calenderColor = Color(0xffA4B4DB);
 const darkButtonColor = Color(0xff547DE9);
 const settingFontColor = Color(0xff3060BF);
 const containerColor = Color(0xffA6B5DC);
+const lightColor = Color(0xffC0BDC9);
 
 showToast({required String text,required BuildContext context}){
   final snackBar = SnackBar(content: Text(text,style: const TextStyle(

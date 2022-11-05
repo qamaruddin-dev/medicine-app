@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/helper/validation.dart';
 import 'package:medicine/screens/appointments_screen/view/textfieldRow.dart';
 
 class AddDoctor extends StatefulWidget {
@@ -17,6 +18,11 @@ class _AddDoctorState extends State<AddDoctor> {
   final specialityController = TextEditingController();
   final emailController = TextEditingController();
   final locationController = TextEditingController();
+  String nameErrorText = '';
+  String numberErrorText = '';
+  String specialityErrorText= '';
+  String emailErrorText = '';
+  String locationErrorText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +30,7 @@ class _AddDoctorState extends State<AddDoctor> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: double.infinity,
@@ -35,11 +42,16 @@ class _AddDoctorState extends State<AddDoctor> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 5),
-                      child: Icon(
-                        Icons.arrow_back_sharp,
-                        color: Colors.white,
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back_sharp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -58,14 +70,16 @@ class _AddDoctorState extends State<AddDoctor> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.06,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.11,
-                height: MediaQuery.of(context).size.width * 0.11,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: Image.asset('assets/icons/doctor_image.png').image,
-                    )),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.11,
+                  height: MediaQuery.of(context).size.width * 0.11,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: Image.asset('assets/icons/doctor_image.png').image,
+                      )),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
@@ -76,19 +90,53 @@ class _AddDoctorState extends State<AddDoctor> {
                   inputType: TextInputType.text,
                   textAction: TextInputAction.next,
                   iconString: 'assets/icons/docName_icon.png',
+                  onChange: (String? val){
+                    if(val!.isEmpty){
+                      nameErrorText = 'Can\'t be empty';
+                    }else{
+                      nameErrorText = '';
+                    }
+                    setState(() {});
+                  },
                   context: context),
-              SizedBox(
+              nameErrorText.isEmpty ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
+              ) : Padding(
+                padding: EdgeInsets.only(top: 7,
+                    left: MediaQuery.of(context).size.width * 0.18),
+                child: Text(nameErrorText,
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w500
+                  ),),
               ),
               textFieldRow(
                   hintText: 'Phone Number',
                   controller: phoneNumberController,
                   inputType: TextInputType.phone,
                   textAction: TextInputAction.next,
+                  onChange: (String? val){
+                    if(val!.isEmpty){
+                      numberErrorText = 'Can\'t be empty';
+                    }else{
+                      numberErrorText = '';
+                    }
+                    setState(() {});
+                  },
                   iconString: 'assets/icons/telephone_icon.png',
                   context: context),
-              SizedBox(
+                numberErrorText.isEmpty ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
+              ) : Padding(
+                padding: EdgeInsets.only(top: 7,
+                    left: MediaQuery.of(context).size.width * 0.18),
+                child: Text(numberErrorText,
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w500
+                  ),),
               ),
               textFieldRow(
                   hintText: 'Speciality',
@@ -96,9 +144,26 @@ class _AddDoctorState extends State<AddDoctor> {
                   textAction: TextInputAction.next,
                   inputType: TextInputType.text,
                   iconString: 'assets/icons/speciality_icon.png',
+                  onChange: (String? val){
+                    if(val!.isEmpty){
+                      specialityErrorText = 'Can\'t be empty';
+                    }else{
+                      specialityErrorText = '';
+                    }
+                    setState(() {});
+                  },
                   context: context),
-              SizedBox(
+              specialityErrorText.isEmpty ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
+              ) : Padding(
+                padding: EdgeInsets.only(top: 7,
+                    left: MediaQuery.of(context).size.width * 0.18),
+                child: Text(specialityErrorText,
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w500
+                  ),),
               ),
               textFieldRow(
                   hintText: 'Email',
@@ -106,9 +171,31 @@ class _AddDoctorState extends State<AddDoctor> {
                   textAction: TextInputAction.next,
                   inputType: TextInputType.emailAddress,
                   iconString: 'assets/icons/email_icon.png',
+                  onChange: (String? val){
+                    if(val!.isEmpty){
+                      emailErrorText = 'Can\'t be empty';
+                    }else{
+                      String value = validateEmail(val);
+                      if(value.isNotEmpty){
+                        emailErrorText = value;
+                      }else{
+                        emailErrorText = '';
+                      }
+                    }
+                    setState(() {});
+                  },
                   context: context),
-              SizedBox(
+              emailErrorText.isEmpty ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
+              ) : Padding(
+                padding: EdgeInsets.only(top: 7,
+                    left: MediaQuery.of(context).size.width * 0.18),
+                child: Text(emailErrorText,
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w500
+                  ),),
               ),
               textFieldRow(
                   hintText: 'Location',
@@ -116,9 +203,29 @@ class _AddDoctorState extends State<AddDoctor> {
                   inputType: TextInputType.text,
                   textAction: TextInputAction.done,
                   iconString: 'assets/icons/location_icon.png',
+                  onChange: (String? val){
+                    if(val!.isEmpty){
+                      locationErrorText = 'Can\'t be empty';
+                    }else{
+                      locationErrorText = '';
+                    }
+                    setState(() {});
+                  },
                   context: context),
+              locationErrorText.isEmpty ? SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ) : Padding(
+                padding: EdgeInsets.only(top: 7,
+                    left: MediaQuery.of(context).size.width * 0.18),
+                child: Text(locationErrorText,
+                  style: GoogleFonts.openSans(
+                      fontSize: 12,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w500
+                  ),),
+              ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.19,
+                height: MediaQuery.of(context).size.height * 0.15,
               ),
               Center(
                 child: Padding(
@@ -131,6 +238,18 @@ class _AddDoctorState extends State<AddDoctor> {
                     ),
                     child: GestureDetector(
                       onTap: (){
+                        if(nameController.text.isEmpty){
+                          nameErrorText = 'Can\'t be empty';
+                        }else if(phoneNumberController.text.isEmpty){
+                          numberErrorText = 'Can\'t be empty';
+                        }else if(specialityController.text.isEmpty){
+                          specialityErrorText = 'Can\'t be empty';
+                        }else if(emailController.text.isEmpty){
+                          emailErrorText = 'Can\'t be empty';
+                        }else if(locationController.text.isEmpty){
+                          locationErrorText = 'Can\'t be empty';
+                        }
+                        setState(() {});
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.5,

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 
 Widget textFieldRow({required String iconString,required TextInputType inputType,required TextInputAction textAction,
+  required Function(String text) onChange,
 required String hintText, required TextEditingController controller,required BuildContext context}){
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.06),
@@ -27,6 +28,9 @@ required String hintText, required TextEditingController controller,required Bui
             cursorColor: brownishColor,
             keyboardType: inputType,
             textInputAction: textAction,
+            onChanged: (val){
+              onChange(val);
+            },
             decoration: InputDecoration(
               isDense: true,
               hintText: hintText,

@@ -10,6 +10,7 @@ class FeedbackScreen extends StatefulWidget {
 }
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,17 +83,24 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.06,
-                            height: MediaQuery.of(context).size.width * 0.06,
-                            color: containerColor.withOpacity(.10),
-                            child: Center(
-                              child: Text(
-                                '${index + 1}',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400),
+                          child: GestureDetector(
+                            onTap: (){
+                              selectedIndex = index;
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.06,
+                              height: MediaQuery.of(context).size.width * 0.06,
+                              color: containerColor.withOpacity(
+                                  selectedIndex == index ? .50 : .10),
+                              child: Center(
+                                child: Text(
+                                  '${index + 1}',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                           ),

@@ -27,11 +27,16 @@ class _RefillScreenState extends State<RefillScreen> {
                   const SizedBox(
                     width: 10,
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 5),
-                    child: Icon(
-                      Icons.arrow_back_sharp,
-                      color: Colors.white,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_sharp,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(
