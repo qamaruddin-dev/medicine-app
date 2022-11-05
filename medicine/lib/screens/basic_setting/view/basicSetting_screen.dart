@@ -17,8 +17,8 @@ class BasicSettingScreen extends StatefulWidget {
 
 class _BasicSettingScreenState extends State<BasicSettingScreen> {
 
-  bool addLanguage = true;
-  bool appMode = true;
+  bool addLanguage = false;
+  bool appMode = false;
   List<String> languages = [
     'English',
     'Hindi',
@@ -104,7 +104,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/morningrem_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/morningrem_icon.svg',
                           text: 'Morning Reminder',onTab: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const MorningReminderScreen()));
                           }),
@@ -113,7 +113,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       ),
                       Divider(indent: MediaQuery.of(context).size.height * 0.03,
                         endIndent: MediaQuery.of(context).size.height * 0.03,),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/eveningrem_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/eveningrem_icon.svg',
                           text: 'Evening Reminder',onTab: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const EveningReminderScreen()));
                           }),
@@ -122,7 +122,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       ),
                       Divider(indent: MediaQuery.of(context).size.height * 0.03,
                         endIndent: MediaQuery.of(context).size.height * 0.03,),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/weeklysum_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/weeklysum_icon.svg',
                           text: 'Weekly summary',onTab: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const WeeklySummaryScreen()));
                           }),
@@ -131,7 +131,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       ),
                       Divider(indent: MediaQuery.of(context).size.height * 0.03,
                         endIndent: MediaQuery.of(context).size.height * 0.03,),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/weekendmode_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/weekendmode_icon.svg',
                           text: 'Weekend mode',onTab: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const WeekendMode()));
                           }),
@@ -140,7 +140,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       ),
                       Divider(indent: MediaQuery.of(context).size.height * 0.03,
                         endIndent: MediaQuery.of(context).size.height * 0.03,),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/language_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/language_icon.svg',
                           text: 'Language',onTab: (){
                         setState(() {
                           addLanguage = true;
@@ -151,7 +151,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       ),
                       Divider(indent: MediaQuery.of(context).size.height * 0.03,
                         endIndent: MediaQuery.of(context).size.height * 0.03,),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/sound_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/sound_icon.svg',
                           text: 'Sound',onTab: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const SoundScreen()));
                           }),
@@ -160,7 +160,7 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                       ),
                       Divider(indent: MediaQuery.of(context).size.height * 0.03,
                         endIndent: MediaQuery.of(context).size.height * 0.03,),
-                      rowForBasicSettingIconText(context: context,image: 'assets/icons/darkmode_icon.png',
+                      rowForBasicSettingIconText(context: context,image: 'assets/svg_icons/darkmode_icon.svg',
                           text: 'Dark mode state',onTab: (){
                         setState(() {
                           appMode = true;

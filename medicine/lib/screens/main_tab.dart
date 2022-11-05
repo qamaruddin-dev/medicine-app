@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/home_screen/view/home_page.dart';
@@ -50,7 +51,7 @@ class _MainTabState extends State<MainTab> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/icons/home_icon.png',color: _currentIndex == 0 ? tabColor : tabIconColor,),
+                    SvgPicture.asset('assets/svg_icons/home_icon.svg',width: 20,color: _currentIndex == 0 ? tabColor : tabIconColor,),
                     Text(
                       'Home',
                       style: GoogleFonts.openSans(
@@ -69,7 +70,7 @@ class _MainTabState extends State<MainTab> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/icons/update_icon.png',color: _currentIndex == 1 ? tabColor : tabIconColor,),
+                    SvgPicture.asset('assets/svg_icons/update_icon.svg',width: 20,color: _currentIndex == 1 ? tabColor : tabIconColor,),
                     Text(
                       'Update',
                       style: GoogleFonts.openSans(
@@ -88,7 +89,7 @@ class _MainTabState extends State<MainTab> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/icons/medication_icon.png',color: _currentIndex == 2 ? tabColor : tabIconColor,),
+                    SvgPicture.asset('assets/svg_icons/medication_icon.svg',width: 20,color: _currentIndex == 2 ? tabColor : tabIconColor,),
                     Text(
                       'Medications',
                       style: GoogleFonts.openSans(
@@ -107,7 +108,7 @@ class _MainTabState extends State<MainTab> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/icons/more_icon.png',color: _currentIndex == 3 ? tabColor : tabIconColor,),
+                    SvgPicture.asset('assets/svg_icons/more_icon.svg',width: 20,color: _currentIndex == 3 ? tabColor : tabIconColor,),
                     Text(
                       'More',
                       style: GoogleFonts.openSans(

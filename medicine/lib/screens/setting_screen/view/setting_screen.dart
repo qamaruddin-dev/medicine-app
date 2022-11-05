@@ -84,7 +84,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  rowWithIconText(context: context,text: 'Settings',image: 'assets/icons/settings2_icon.png',
+                  rowWithIconText(context: context,text: 'Settings',image: 'assets/svg_icons/setting_icon.svg',
                   tab: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const BasicSettingScreen()));
                   }),
@@ -108,24 +108,24 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Login',image: 'assets/icons/login_icon.png',
+                  rowWithIconText(context: context,text: 'Login',image: 'assets/svg_icons/login_icon.svg',
                       tab: (){}),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Passcode',image: 'assets/icons/passcode_icon.png',
+                  rowWithIconText(context: context,text: 'Passcode',image: 'assets/svg_icons/passcode_icon.svg',
                       tab: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const PasscodeScreen()));
                       }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Open Account',image: 'assets/icons/openaccount_icon.png',
+                  rowWithIconText(context: context,text: 'Open Account',image: 'assets/svg_icons/openaccount_icon.svg',
                       tab: (){}),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Verification Code',image: 'assets/icons/verificationcode_icon.png',
+                  rowWithIconText(context: context,text: 'Verification Code',image: 'assets/svg_icons/verificationcode_icon.svg',
                       tab: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const VerificationScreen()));
                       }),
@@ -149,7 +149,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Upgrade to premium',image: 'assets/icons/upgrade_icon.png',
+                  rowWithIconText(context: context,text: 'Upgrade to premium',image: 'assets/svg_icons/upgrade_icon.svg',
                       tab: (){}),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
@@ -171,19 +171,19 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Rate us',image: 'assets/icons/rateus_icon.png',tab: (){
+                  rowWithIconText(context: context,text: 'Rate us',image: 'assets/svg_icons/rateus_icon.svg',tab: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const RateUs()));
                   }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'Send Feedback',image: 'assets/icons/feedback_icon.png',tab: (){
+                  rowWithIconText(context: context,text: 'Send Feedback',image: 'assets/svg_icons/feedback_icon.svg',tab: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const FeedbackScreen()));
                   }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowWithIconText(context: context,text: 'About',image: 'assets/icons/about_icon.png',tab: (){
+                  rowWithIconText(context: context,text: 'About',image: 'assets/svg_icons/about_icon.svg',tab: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutScreen()));
                   }),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/helper/validation.dart';
@@ -71,15 +72,7 @@ class _AddDoctorState extends State<AddDoctor> {
                 height: MediaQuery.of(context).size.height * 0.06,
               ),
               Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.11,
-                  height: MediaQuery.of(context).size.width * 0.11,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: Image.asset('assets/icons/doctor_image.png').image,
-                      )),
-                ),
+                child: SvgPicture.asset('assets/svg_icons/doctor_image.svg',width: 50,),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
@@ -89,7 +82,7 @@ class _AddDoctorState extends State<AddDoctor> {
                   controller: nameController,
                   inputType: TextInputType.text,
                   textAction: TextInputAction.next,
-                  iconString: 'assets/icons/docName_icon.png',
+                  iconString: 'assets/svg_icons/docName_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       nameErrorText = 'Can\'t be empty';
@@ -124,7 +117,7 @@ class _AddDoctorState extends State<AddDoctor> {
                     }
                     setState(() {});
                   },
-                  iconString: 'assets/icons/telephone_icon.png',
+                  iconString: 'assets/svg_icons/telephone_icon.svg',
                   context: context),
                 numberErrorText.isEmpty ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
@@ -143,7 +136,7 @@ class _AddDoctorState extends State<AddDoctor> {
                   controller: specialityController,
                   textAction: TextInputAction.next,
                   inputType: TextInputType.text,
-                  iconString: 'assets/icons/speciality_icon.png',
+                  iconString: 'assets/svg_icons/speciality_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       specialityErrorText = 'Can\'t be empty';
@@ -170,7 +163,7 @@ class _AddDoctorState extends State<AddDoctor> {
                   controller: emailController,
                   textAction: TextInputAction.next,
                   inputType: TextInputType.emailAddress,
-                  iconString: 'assets/icons/email_icon.png',
+                  iconString: 'assets/svg_icons/email_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       emailErrorText = 'Can\'t be empty';
@@ -202,7 +195,7 @@ class _AddDoctorState extends State<AddDoctor> {
                   controller: locationController,
                   inputType: TextInputType.text,
                   textAction: TextInputAction.done,
-                  iconString: 'assets/icons/location_icon.png',
+                  iconString: 'assets/svg_icons/location_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       locationErrorText = 'Can\'t be empty';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/appointments_screen/view/appointment_screen.dart';
@@ -38,7 +39,10 @@ class _MoreScreenState extends State<MoreScreen> {
                     children: [
                       Row(
                         children: [
-                          Image.asset('assets/icons/profile_icon.png'),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset('assets/svg_icons/profile_icon.svg',width: 40,),
+                          ),
                           SizedBox(
                             width: 15,
                           ),
@@ -57,7 +61,7 @@ class _MoreScreenState extends State<MoreScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 10, right: 10),
                         child:
-                        Image.asset('assets/icons/notification_icon.png'),
+                        SvgPicture.asset('assets/svg_icons/notification_icon.svg',width: 25,color: Colors.white,),
                       ),
                     ],
                   ),
@@ -69,7 +73,7 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             moreWidgetRow(
               text: 'Appointments',
-              image: 'assets/icons/appointment_icon.png',
+              image: 'assets/svg_icons/appointment_icon.svg',
               tab: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const AppointmentScreen()));
               },
@@ -79,7 +83,7 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             moreWidgetRow(
               text: 'Doctors',
-              image: 'assets/icons/doctor_icon.png',
+              image: 'assets/svg_icons/doctor_icon.svg',
               tab: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorScreen()));
               }
@@ -88,7 +92,7 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             moreWidgetRow(
               text: 'Refill',
-              image: 'assets/icons/refill_icon.png',
+              image: 'assets/svg_icons/refill_icon.svg',
               tab: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const RefillScreen()));
               },
@@ -97,7 +101,7 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             moreWidgetRow(
               text: 'Setting',
-              image: 'assets/icons/setting_icon.png',
+              image: 'assets/svg_icons/setting_icon.svg',
               tab: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingScreen()));
               },
@@ -106,7 +110,7 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             moreWidgetRow(
               text: 'Help & Support',
-              image: 'assets/icons/help_icon.png',
+              image: 'assets/svg_icons/help_icon.svg',
               tab: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpScreen()));
               },
@@ -124,7 +128,7 @@ Widget moreWidgetRow({required String text, required String image,required Funct
     child: Row(
       children: [
         const SizedBox(width: 25,),
-        Image.asset(image),
+        SvgPicture.asset(image,width: 35,),
         const SizedBox(width: 25,),
         Text(
           text,

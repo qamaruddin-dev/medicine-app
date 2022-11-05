@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 
@@ -55,16 +56,7 @@ class _RefillScreenState extends State<RefillScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.contain,
-                      image: Image.asset('assets/icons/refill_icon.png').image
-                    )
-                  ),
-                ),
+                SvgPicture.asset('assets/svg_icons/refill_icon.svg',width: 70,),
                 Text(
                   'Log your refills',
                   style: GoogleFonts.openSans(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/home_screen/view/home_page.dart';
@@ -39,7 +40,10 @@ class _MedicationPageState extends State<MedicationPage> {
                       children: [
                         Row(
                           children: [
-                            Image.asset('assets/icons/profile_icon.png'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SvgPicture.asset('assets/svg_icons/profile_icon.svg',width: 40,),
+                            ),
                             SizedBox(
                               width: 15,
                             ),
@@ -58,7 +62,7 @@ class _MedicationPageState extends State<MedicationPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10, right: 10),
                           child:
-                          Image.asset('assets/icons/notification_icon.png'),
+                          SvgPicture.asset('assets/svg_icons/notification_icon.svg',width: 25,color: Colors.white,),
                         ),
                       ],
                     ),
@@ -133,8 +137,9 @@ class _MedicationPageState extends State<MedicationPage> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
-                                        child: Image.asset(
-                                          'assets/icons/capsule_icon.png',
+                                        child: SvgPicture.asset(
+                                          'assets/svg_icons/capsule_icon.svg',
+                                          width: 20,
                                           color: appGreenColor,
                                         ),
                                       ),

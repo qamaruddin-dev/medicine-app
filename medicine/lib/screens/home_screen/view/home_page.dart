@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medicine/constants/appConst.dart';
@@ -75,7 +76,10 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset('assets/icons/profile_icon.png'),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset('assets/svg_icons/profile_icon.svg',width: 40,),
+                          ),
                           Padding(
                             padding:  const EdgeInsets.only(top: 20.0),
                             child: Column(
@@ -102,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10,right: 10),
-                            child: Image.asset('assets/icons/notification_icon.png'),
+                            child: SvgPicture.asset('assets/svg_icons/notification_icon.svg',width: 25,color: Colors.white,),
                           ),
                         ],
                       ),
@@ -250,7 +254,7 @@ class _HomePageState extends State<HomePage> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-                                        Image.asset('assets/icons/capsule_icon.png'),
+                                        SvgPicture.asset('assets/svg_icons/capsule_icon.svg',width: 15,),
                                         Column(
                                           children: [
                                             Text(

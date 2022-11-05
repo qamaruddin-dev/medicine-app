@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/appointments_screen/view/textfieldRow.dart';
@@ -71,15 +72,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                 height: MediaQuery.of(context).size.height * 0.06,
               ),
               Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.11,
-                  height: MediaQuery.of(context).size.width * 0.11,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset('assets/icons/appointment_icon.png').image,
-                  )),
-                ),
+                child: SvgPicture.asset('assets/svg_icons/appointment_icon.svg',width: 50,),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
@@ -89,7 +82,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                   controller: titleController,
                   inputType: TextInputType.text,
                   textAction: TextInputAction.next,
-                  iconString: 'assets/icons/appointTitle_icon.png',
+                  iconString: 'assets/svg_icons/appointTitle_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       setState(() {
@@ -115,7 +108,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                   controller: doctorController,
                   textAction: TextInputAction.next,
                   inputType: TextInputType.text,
-                  iconString: 'assets/icons/select.png',
+                  iconString: 'assets/svg_icons/doctor_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       setState(() {
@@ -140,7 +133,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                   controller: dateController,
                   inputType: TextInputType.datetime,
                   textAction: TextInputAction.next,
-                  iconString: 'assets/icons/calender.png',
+                  iconString: 'assets/svg_icons/calender.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       setState(() {
@@ -165,7 +158,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                   controller: reminderController,
                   inputType: TextInputType.datetime,
                   textAction: TextInputAction.next,
-                  iconString: 'assets/icons/alarm_icon.png',
+                  iconString: 'assets/svg_icons/alarm_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       setState(() {
@@ -190,7 +183,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                   controller: locationController,
                   inputType: TextInputType.text,
                   textAction: TextInputAction.next,
-                  iconString: 'assets/icons/location_icon.png',
+                  iconString: 'assets/svg_icons/location_icon.svg',
                   onChange: (String? val){
                     if(val!.isEmpty){
                       setState(() {
@@ -222,7 +215,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
                       });
                     }
                   },
-                  iconString: 'assets/icons/outline_icon.png',
+                  iconString: 'assets/svg_icons/outline_icon.svg',
                   context: context),
               notesErrorText.isEmpty ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
