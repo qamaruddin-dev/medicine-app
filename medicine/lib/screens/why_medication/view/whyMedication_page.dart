@@ -31,11 +31,16 @@ class _WhyMedicationPageState extends State<WhyMedicationPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.arrow_back_sharp,
-                            color: Colors.white,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back_sharp,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         Text(

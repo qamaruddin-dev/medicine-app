@@ -26,13 +26,7 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04,left: 10),
-                      child: Icon(
-                        Icons.arrow_back_sharp,
-                        color: Colors.white,
-                      ),
-                    ),
+                    Text(''),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

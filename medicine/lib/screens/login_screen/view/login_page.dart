@@ -41,16 +41,16 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child: Icon(
-                        Icons.arrow_back_sharp,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
+                    // const Padding(
+                    //   padding: EdgeInsets.only(top: 5),
+                    //   child: Icon(
+                    //     Icons.arrow_back_sharp,
+                    //     color: Colors.white,
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   width: 15,
+                    // ),
                     Text(
                       'Login',
                       style: GoogleFonts.openSans(

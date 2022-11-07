@@ -34,9 +34,14 @@ class _MedicationStrengthPageState extends State<MedicationStrengthPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.arrow_back_sharp,
-                            color: Colors.white,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back_sharp,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         Text(
