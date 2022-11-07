@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/home_screen/view/home_page.dart';
@@ -34,7 +35,7 @@ class _UpdatesPageState extends State<UpdatesPage> {
                     children: [
                       Row(
                         children: [
-                          Image.asset('assets/icons/profile_icon.png'),
+                          SvgPicture.asset('assets/svg_icons/profile_icon.svg',width: 40,),
                           SizedBox(
                             width: 15,
                           ),
@@ -53,7 +54,8 @@ class _UpdatesPageState extends State<UpdatesPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 10, right: 10),
                         child:
-                        Image.asset('assets/icons/notification_icon.png'),
+                        SvgPicture.asset('assets/svg_icons/notification_icon.svg',width: 25,
+                        color: Colors.white,),
                       ),
                     ],
                   ),
@@ -122,7 +124,8 @@ class _UpdatesPageState extends State<UpdatesPage> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
-                                      child: Image.asset('assets/icons/pills_icon.png',scale: .8,color: pillColor,),
+                                      child: SvgPicture.asset('assets/svg_icons/pills_icon.svg',color: pillColor,
+                                      width: 20,),
                                     ),
                                     Column(
                                       children: [

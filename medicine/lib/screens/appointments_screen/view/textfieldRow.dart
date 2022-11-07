@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 
 Widget textFieldRow({required String iconString,required TextInputType inputType,required TextInputAction textAction,
+  required Function(String text) onChange,
 required String hintText, required TextEditingController controller,required BuildContext context}){
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.06),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Container(
-          width: 30,
-          height: 30,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: Image.asset(iconString).image,
-            )
-          ),
-        ),
+        SvgPicture.asset(iconString,width: 20,),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.04,
         ),
@@ -27,6 +21,9 @@ required String hintText, required TextEditingController controller,required Bui
             cursorColor: brownishColor,
             keyboardType: inputType,
             textInputAction: textAction,
+            onChanged: (val){
+              onChange(val);
+            },
             decoration: InputDecoration(
               isDense: true,
               hintText: hintText,

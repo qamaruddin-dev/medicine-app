@@ -12,6 +12,7 @@ class EveningReminderScreen extends StatefulWidget {
 }
 
 class _EveningReminderScreenState extends State<EveningReminderScreen> {
+  String time = '08:00 AM';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +30,16 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
                   const SizedBox(
                     width: 10,
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 5),
-                    child: Icon(
-                      Icons.arrow_back_sharp,
-                      color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_sharp,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -133,12 +139,24 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
             Padding(
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.height * 0.02),
-              child: Text(
-                '08:00 AM',
-                style: GoogleFonts.openSans(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
+              child: GestureDetector(
+                onTap: () async {
+                  TimeOfDay? picked = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+                  );
+                  if (picked != null) {
+                    time = picked.format(context);
+                    setState(() {});
+                  }
+                },
+                child: Text(
+                  time,
+                  style: GoogleFonts.openSans(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ),
