@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "28394901622",
+    "project_id": "medicare-21ae2",
+    "storage_bucket": "medicare-21ae2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28394901622:android:96f4c94c6c524bbaab4f57",
+        "android_client_info": {
+          "package_name": "com.eminentphysician.medicare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28394901622-27mcgjgkdvr2nhsdtqk7nrhnk80jdoir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eminentphysician.medicare",
+            "certificate_hash": "efff67078d7f419687e2cb370951d41a716a539b"
+          }
+        },
+        {
+          "client_id": "28394901622-1q2odg5ud1l8ki2um454vct3cohi9vh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjAgGAsHu3ncFzPzoVf4YATuOs-3yitjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28394901622-1q2odg5ud1l8ki2um454vct3cohi9vh4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
