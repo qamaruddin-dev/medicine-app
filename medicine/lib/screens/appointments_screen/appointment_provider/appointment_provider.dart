@@ -1,5 +1,3 @@
 import 'package:flutter/material.dart';
 
-class AppointmentProvider extends ChangeNotifier{
-
-}
+class AppointmentProvider extends ChangeNotifier {}

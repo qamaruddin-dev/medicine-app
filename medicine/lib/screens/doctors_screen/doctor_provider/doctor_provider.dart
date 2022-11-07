@@ -1,5 +1,3 @@
 import 'package:flutter/material.dart';
 
-class DoctorProvider extends ChangeNotifier{
-
-}
+class DoctorProvider extends ChangeNotifier {}

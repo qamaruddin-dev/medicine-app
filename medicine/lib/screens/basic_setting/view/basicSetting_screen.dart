@@ -54,7 +54,8 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.03),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,60 +79,111 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/morningrem_icon.png',
-                  text: 'Morning Reminder',onTab: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MorningReminderScreen()));
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/morningrem_icon.png',
+                      text: 'Morning Reminder',
+                      onTab: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const MorningReminderScreen()));
                       }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Divider(indent: MediaQuery.of(context).size.height * 0.03,
-                  endIndent: MediaQuery.of(context).size.height * 0.03,),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/eveningrem_icon.png',
-                  text: 'Evening Reminder',onTab: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const EveningReminderScreen()));
+                  Divider(
+                    indent: MediaQuery.of(context).size.height * 0.03,
+                    endIndent: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/eveningrem_icon.png',
+                      text: 'Evening Reminder',
+                      onTab: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const EveningReminderScreen()));
                       }),
-                SizedBox(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Divider(indent: MediaQuery.of(context).size.height * 0.03,
-                    endIndent: MediaQuery.of(context).size.height * 0.03,),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/weeklysum_icon.png',
-                  text: 'Weekly summary',onTab: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const WeeklySummaryScreen()));
+                  Divider(
+                    indent: MediaQuery.of(context).size.height * 0.03,
+                    endIndent: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/weeklysum_icon.png',
+                      text: 'Weekly summary',
+                      onTab: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const WeeklySummaryScreen()));
                       }),
-                SizedBox(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Divider(indent: MediaQuery.of(context).size.height * 0.03,
-                    endIndent: MediaQuery.of(context).size.height * 0.03,),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/weekendmode_icon.png',
-                  text: 'Weekend mode',onTab: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const WeekendMode()));
+                  Divider(
+                    indent: MediaQuery.of(context).size.height * 0.03,
+                    endIndent: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/weekendmode_icon.png',
+                      text: 'Weekend mode',
+                      onTab: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WeekendMode()));
                       }),
-                SizedBox(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Divider(indent: MediaQuery.of(context).size.height * 0.03,
-                    endIndent: MediaQuery.of(context).size.height * 0.03,),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/language_icon.png',
-                  text: 'Language',onTab: (){}),
-                SizedBox(
+                  Divider(
+                    indent: MediaQuery.of(context).size.height * 0.03,
+                    endIndent: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/language_icon.png',
+                      text: 'Language',
+                      onTab: () {}),
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Divider(indent: MediaQuery.of(context).size.height * 0.03,
-                    endIndent: MediaQuery.of(context).size.height * 0.03,),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/sound_icon.png',
-                  text: 'Sound',onTab: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SoundScreen()));
+                  Divider(
+                    indent: MediaQuery.of(context).size.height * 0.03,
+                    endIndent: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/sound_icon.png',
+                      text: 'Sound',
+                      onTab: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SoundScreen()));
                       }),
-                SizedBox(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Divider(indent: MediaQuery.of(context).size.height * 0.03,
-                    endIndent: MediaQuery.of(context).size.height * 0.03,),
-                  rowForBasicSettingIconText(context: context,image: 'assets/icons/darkmode_icon.png',
-                  text: 'Dark mode state',onTab: (){}),
+                  Divider(
+                    indent: MediaQuery.of(context).size.height * 0.03,
+                    endIndent: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  rowForBasicSettingIconText(
+                      context: context,
+                      image: 'assets/icons/darkmode_icon.png',
+                      text: 'Dark mode state',
+                      onTab: () {}),
                 ],
               ),
             )

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 const appColor = Color(0xFF637EC1);
@@ -14,10 +12,15 @@ const calenderColor = Color(0xffA4B4DB);
 const darkButtonColor = Color(0xff547DE9);
 const settingFontColor = Color(0xff3060BF);
 
-showToast({required String text,required BuildContext context}){
-  final snackBar = SnackBar(content: Text(text,style: const TextStyle(
-      color: Colors.black87
-  ),),
-    backgroundColor: Colors.red,);
-  return ScaffoldMessenger.of(context).showSnackBar(snackBar);
+showToast({required String text, required BuildContext context}) {
+  final snackBar = SnackBar(
+    content: Text(
+      text,
+      style: const TextStyle(color: Colors.black87),
+    ),
+    backgroundColor: Colors.red,
+  );
+  return ScaffoldMessenger.of(context)
+    ..removeCurrentSnackBar()
+    ..showSnackBar(snackBar);
 }

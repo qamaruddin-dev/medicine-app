@@ -53,7 +53,8 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02),
               child: Text(
                 'Reminder',
                 style: GoogleFonts.openSans(
@@ -67,7 +68,8 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
               height: MediaQuery.of(context).size.height * 0.01,
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02,
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02,
                   right: MediaQuery.of(context).size.height * 0.02),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,23 +84,25 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
                   ),
                   Transform.scale(
                     scale: 1,
-                    child: Consumer<LoginProvider>(builder: (BuildContext context, value, Widget? child) {
-                      return Checkbox(
-                          activeColor: Colors.white,
-                          checkColor: Colors.green,
-                          value: value.rememberMe,
-                          splashRadius: 30,
-                          onChanged: (val) {
-                            value.updateRememberMe(val!);
-                          }
-                      );
-                    },),
+                    child: Consumer<LoginProvider>(
+                      builder: (BuildContext context, value, Widget? child) {
+                        return Checkbox(
+                            activeColor: Colors.white,
+                            checkColor: Colors.green,
+                            value: value.rememberMe,
+                            splashRadius: 30,
+                            onChanged: (val) {
+                              value.updateRememberMe(val!);
+                            });
+                      },
+                    ),
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02),
               child: Text(
                 'A reminder to take your meds',
                 style: GoogleFonts.openSans(
@@ -112,7 +116,8 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02),
               child: Text(
                 'Set Time',
                 style: GoogleFonts.openSans(
@@ -126,7 +131,8 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
               height: MediaQuery.of(context).size.height * 0.01,
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02),
               child: Text(
                 '08:00 AM',
                 style: GoogleFonts.openSans(
@@ -141,12 +147,10 @@ class _EveningReminderScreenState extends State<EveningReminderScreen> {
               child: Card(
                 elevation: 3,
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                  BorderRadius.circular(100.0),
+                  borderRadius: BorderRadius.circular(100.0),
                 ),
                 child: GestureDetector(
-                  onTap: (){
-                  },
+                  onTap: () {},
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: MediaQuery.of(context).size.height * 0.055,

@@ -1,5 +1,3 @@
 import 'package:flutter/material.dart';
 
-class MedicationStrengthProvider extends ChangeNotifier{
-
-}
+class MedicationStrengthProvider extends ChangeNotifier {}
