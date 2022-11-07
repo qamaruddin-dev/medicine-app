@@ -198,22 +198,22 @@ class _BasicSettingScreenState extends State<BasicSettingScreen> {
                               MaterialPageRoute(
                                   builder: (context) => const SoundScreen()));
                         }),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.03,
-                    ),
-                    Divider(
-                      indent: MediaQuery.of(context).size.height * 0.03,
-                      endIndent: MediaQuery.of(context).size.height * 0.03,
-                    ),
-                    rowForBasicSettingIconText(
-                        context: context,
-                        image: 'assets/svg_icons/darkmode_icon.svg',
-                        text: 'Dark mode state',
-                        onTab: () {
-                          setState(() {
-                            appMode = true;
-                          });
-                        }),
+                    // SizedBox(
+                    //   height: MediaQuery.of(context).size.height * 0.03,
+                    // ),
+                    // Divider(
+                    //   indent: MediaQuery.of(context).size.height * 0.03,
+                    //   endIndent: MediaQuery.of(context).size.height * 0.03,
+                    // ),
+                    // rowForBasicSettingIconText(
+                    //     context: context,
+                    //     image: 'assets/svg_icons/darkmode_icon.svg',
+                    //     text: 'Dark mode state',
+                    //     onTab: () {
+                    //       setState(() {
+                    //         appMode = true;
+                    //       });
+                    //     }),
                   ],
                 ),
               )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
+import 'package:medicine/screens/weekend_mode/weekend_provider/weekend_provider.dart';
 import 'package:provider/provider.dart';
 
 class WeekendMode extends StatefulWidget {
@@ -88,14 +89,14 @@ class _WeekendModeState extends State<WeekendMode> {
                   ),
                   Transform.scale(
                     scale: 1,
-                    child: Consumer<LoginProvider>(builder: (BuildContext context, value, Widget? child) {
+                    child: Consumer<WeekendProvider>(builder: (BuildContext context, value, Widget? child) {
                       return Checkbox(
                           activeColor: Colors.white,
                           checkColor: Colors.green,
-                          value: value.rememberMe,
+                          value: value.reminder,
                           splashRadius: 30,
                           onChanged: (val) {
-                            value.updateRememberMe(val!);
+                            value.updateReminder(val!);
                           }
                       );
                     },),
@@ -106,41 +107,45 @@ class _WeekendModeState extends State<WeekendMode> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
-              child: GestureDetector(
-                onTap: ()async{
-                  TimeOfDay? picked = await showTimePicker(
-                    context: context, initialTime: TimeOfDay.fromDateTime(DateTime.now()),);
-                  if(picked != null){
-                    time = picked.format(context);
-                    setState(() {});
-                  }
-                },
-                child: Text(
-                  time,
-                  style: GoogleFonts.openSans(
-                    color: settingFontColor,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400,
+            Consumer<WeekendProvider>(builder: (BuildContext context, value, Widget? child) {
+              return value.reminder ? Column(
+                children: [Padding(
+                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+                  child: GestureDetector(
+                    onTap: ()async{
+                      TimeOfDay? picked = await showTimePicker(
+                        context: context, initialTime: TimeOfDay.fromDateTime(DateTime.now()),);
+                      if(picked != null){
+                        time = picked.format(context);
+                        setState(() {});
+                      }
+                    },
+                    child: Text(
+                      time,
+                      style: GoogleFonts.openSans(
+                        color: settingFontColor,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
-              child: Text(
-                '08:00 AM',
-                style: GoogleFonts.openSans(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+                    child: Text(
+                      '08:00 AM',
+                      style: GoogleFonts.openSans(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),],
+              ): Container();
+            },),
             Expanded(child: SizedBox()),
             Center(
               child: Card(

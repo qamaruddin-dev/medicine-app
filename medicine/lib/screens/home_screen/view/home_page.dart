@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medicine/constants/appConst.dart';
+import 'package:medicine/screens/home_screen/homePage_provider/homePage_provider.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -32,13 +34,11 @@ class _HomePageState extends State<HomePage> {
     'Now'
   ];
   int selectedTime = -1;
-  bool skip = false;
-  bool takeMed = false;
-  bool medReschedule = false;
   DateTime scheduledDate = DateTime.now();
   final List<String> _selectedItems = [];
   final List<String> _selectedItemsMedTaken = [];
   int _currentIndex = 0;
+  DateTime pre_backpress = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,847 +56,853 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipPath(
-                  clipper: Customshape(),
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    decoration:  BoxDecoration(
-                      color: appColor.withOpacity(.58),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset('assets/svg_icons/profile_icon.svg',width: 40,),
-                          ),
-                          Padding(
-                            padding:  const EdgeInsets.only(top: 20.0),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Welcome Back,',
-                                  style: GoogleFonts.openSans(
-                                      fontSize: 19,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  'Ahsan',
-                                  style: GoogleFonts.openSans(
-                                      fontSize: 19,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10,right: 10),
-                            child: SvgPicture.asset('assets/svg_icons/notification_icon.svg',width: 25,color: Colors.white,),
-                          ),
-                        ],
+      body: WillPopScope(
+        onWillPop: ()async{
+          final timegap = DateTime.now().difference(pre_backpress);
+          final cantExit = timegap >= Duration(seconds: 2);
+          pre_backpress = DateTime.now();
+          if(cantExit){
+            showToast(text: 'Press Back button again to Exit', context: context);
+            return false;
+          }else{
+            return true;
+          }
+        } ,
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipPath(
+                    clipper: Customshape(),
+                    child: Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      decoration:  BoxDecoration(
+                        color: appColor.withOpacity(.58),
                       ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 100,
-                  child: ListView.builder(
-                    itemCount: 7,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.011),
-                        child: GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              _currentIndex = index;
-                            });
-                          },
-                          child: Card(
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SvgPicture.asset('assets/svg_icons/profile_icon.svg',width: 40,),
                             ),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.112,
-                              // height: MediaQuery.of(context).size.height * 0.08,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: _currentIndex == index ?  calenderColor : Colors.white,
-                              ),
+                            Padding(
+                              padding:  const EdgeInsets.only(top: 20.0),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    days[index],
+                                    'Welcome Back,',
                                     style: GoogleFonts.openSans(
-                                        fontSize: 11,
-                                        color: _currentIndex == index ? Colors.white : yellowishColor,
+                                        fontSize: 19,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w600),
                                   ),
+                                  SizedBox(
+                                    height: 3,
+                                  ),
                                   Text(
-                                    date[index],
+                                    'Ahsan',
                                     style: GoogleFonts.openSans(
-                                        fontSize: 11,
-                                        color: _currentIndex == index ? Colors.white : yellowishColor,
+                                        fontSize: 19,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10,right: 10),
+                              child: SvgPicture.asset('assets/svg_icons/notification_icon.svg',width: 25,color: Colors.white,),
+                            ),
+                          ],
                         ),
-                      );
-                    },),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Center(
-                  child: Text(
-                    'Today, 21 April',
-                    style: GoogleFonts.openSans(
-                        fontSize: 12,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Card(
-                  elevation: .3,
-                  child: Container(
-                    width: double.infinity,
-                    height: 5,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Text(
-                    'My today activities',
-                    style: GoogleFonts.openSans(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Text(
-                      'Mark All Doses',
-                      style: GoogleFonts.openSans(
-                          fontSize: 11,
-                          color: brownishColor,
-                          fontWeight: FontWeight.w500),
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: 2,
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.09),
-                              child: Text(
-                                '12:00 AM',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 100,
+                    child: ListView.builder(
+                      itemCount: 7,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.011),
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                _currentIndex = index;
+                              });
+                            },
+                            child: Card(
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
                               ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.07),
                               child: Container(
+                                width: MediaQuery.of(context).size.width * 0.112,
+                                // height: MediaQuery.of(context).size.height * 0.08,
                                 decoration: BoxDecoration(
-                                    border: Border.all(width: .2,color: Colors.black38),
-                                    borderRadius: BorderRadius.circular(10)
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: _currentIndex == index ?  calenderColor : Colors.white,
                                 ),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
-                                    SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.03,
+                                    Text(
+                                      days[index],
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 11,
+                                          color: _currentIndex == index ? Colors.white : yellowishColor,
+                                          fontWeight: FontWeight.w600),
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        SvgPicture.asset('assets/svg_icons/capsule_icon.svg',width: 15,),
-                                        Column(
-                                          children: [
-                                            Text(
-                                              'Paracetamol',
-                                              style: GoogleFonts.openSans(
-                                                  fontSize: 14,
-                                                  color: tabIconColor,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                            Text(
-                                              '20g, take 2 pill(s)',
-                                              style: GoogleFonts.openSans(
-                                                  fontSize: 8,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
-                                        Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.black,
-                                        )
-                                      ],
+                                    Text(
+                                      date[index],
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 11,
+                                          color: _currentIndex == index ? Colors.white : yellowishColor,
+                                          fontWeight: FontWeight.w600),
                                     ),
-                                    SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.03,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                                border: Border.all(width: .5,color: Colors.blue),
-                                              ),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.close,
-                                                  color: tabIconColor,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            GestureDetector(
-                                              onTap: (){
-                                                setState(() {
-                                                  skip = true;
-                                                });
-                                              },
-                                              child: Text(
-                                                'Skip',
-                                                style: GoogleFonts.openSans(
-                                                    fontSize: 10,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                                border: Border.all(width: .5,color: Colors.blue),
-                                              ),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.check,
-                                                  size: 20,
-                                                  color: Colors.green,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            GestureDetector(
-                                              onTap: (){
-                                                setState(() {
-                                                  takeMed = true;
-                                                });
-                                              },
-                                              child: Text(
-                                                'Take',
-                                                style: GoogleFonts.openSans(
-                                                    fontSize: 10,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                                border: Border.all(width: .5,color: Colors.blue),
-                                              ),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.event,
-                                                  color: appColor,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            GestureDetector(
-                                              onTap: (){
-                                                setState(() {
-                                                  medReschedule = true;
-                                                });
-                                              },
-                                              child: Text(
-                                                'Reschedule',
-                                                style: GoogleFonts.openSans(
-                                                    fontSize: 10,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    )
                                   ],
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      );
-                    },),
-                )
-              ],
-            ),
-            skip ? Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(.85),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: brownishColor,width: .2)
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 20,
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                  skip = false;
-                                });
-                              },
-                              child: Icon(
-                                Icons.arrow_back_sharp,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Why are you skipping this dose?',
-                              style: GoogleFonts.openSans(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: reasonsForSkipping.length,
-                            physics: BouncingScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) {
-                              return CheckboxListTile(
-                                side: BorderSide(color: Colors.black38),
-                                dense: true,
-                                checkColor: Colors.green,
-                                activeColor: Colors.white,
-                                value: _selectedItems.contains(reasonsForSkipping[index]),
-                                title: Text(reasonsForSkipping[index],
-                                style: GoogleFonts.openSans(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400
-                                ),),
-                                controlAffinity: ListTileControlAffinity.leading,
-                                onChanged: (isChecked) => _itemChange(reasonsForSkipping[index], isChecked!),
-                              );
-                            },),
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              skip = false;
-                            });
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            decoration: BoxDecoration(
-                              color: appColor.withOpacity(.8),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Save',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                      ],
+                        );
+                      },),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Text(
+                      'Today, 21 April',
+                      style: GoogleFonts.openSans(
+                          fontSize: 12,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
-                ],
-              )
-            ) : Container(),
-            takeMed ? Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(.85),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: brownishColor,width: .2)
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 20,
-                              ),
-                              GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    takeMed = false;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.arrow_back_sharp,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'When did you take this med?',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: medTaken.length,
-                              physics: BouncingScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return CheckboxListTile(
-                                  side: BorderSide(color: Colors.black38),
-                                  dense: true,
-                                  checkColor: Colors.green,
-                                  activeColor: Colors.white,
-                                  value: _selectedItemsMedTaken.contains(medTaken[index]),
-                                  title: Text(medTaken[index],
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400
-                                    ),),
-                                  controlAffinity: ListTileControlAffinity.leading,
-                                  onChanged: (isChecked) => _itemChangeMedList(medTaken[index], isChecked!),
-                                );
-                              },),
-                          ),
-                          GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                takeMed = false;
-                              });
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.35,
-                              height: MediaQuery.of(context).size.height * 0.05,
-                              decoration: BoxDecoration(
-                                color: appColor.withOpacity(.8),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Save',
-                                  style: GoogleFonts.openSans(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Card(
+                    elevation: .3,
+                    child: Container(
+                      width: double.infinity,
+                      height: 5,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Text(
+                      'My today activities',
+                      style: GoogleFonts.openSans(
+                          fontSize: 15,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Text(
+                        'Mark All Doses',
+                        style: GoogleFonts.openSans(
+                            fontSize: 11,
+                            color: brownishColor,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
-                  ],
-                )
-            ) : Container(),
-            medReschedule ? Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(.85),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: brownishColor,width: .2)
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 2,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                width: 20,
-                              ),
-                              GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    medReschedule = false;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.arrow_back_sharp,
-                                  color: Colors.black,
+                              Padding(
+                                padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.09),
+                                child: Text(
+                                  '12:00 AM',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
                               SizedBox(
-                                width: 10,
+                                height: 5,
                               ),
-                              Text(
-                                'Reschedule for',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.07),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: .2,color: Colors.black38),
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: MediaQuery.of(context).size.height * 0.03,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          SvgPicture.asset('assets/svg_icons/capsule_icon.svg',width: 15,),
+                                          Column(
+                                            children: [
+                                              Text(
+                                                'Paracetamol',
+                                                style: GoogleFonts.openSans(
+                                                    fontSize: 14,
+                                                    color: tabIconColor,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              Text(
+                                                '20g, take 2 pill(s)',
+                                                style: GoogleFonts.openSans(
+                                                    fontSize: 8,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                            ],
+                                          ),
+                                          Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.black,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: MediaQuery.of(context).size.height * 0.03,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: (){
+                                              var p = Provider.of<HomePageProvider>(context,listen: false);
+                                              p.updateSkip(true);
+                                              },
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 30,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(100),
+                                                    border: Border.all(width: .5,color: Colors.blue),
+                                                  ),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons.close,
+                                                      color: tabIconColor,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  'Skip',
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: 10,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: (){
+                                              var p = Provider.of<HomePageProvider>(context,listen: false);
+                                              p.updateTakeMeds(true);
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 30,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(100),
+                                                    border: Border.all(width: .5,color: Colors.blue),
+                                                  ),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons.check,
+                                                      size: 20,
+                                                      color: Colors.green,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  'Take',
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: 10,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: (){
+                                              var p = Provider.of<HomePageProvider>(context,listen: false);
+                                              p.updateTakeMeds(true);
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 30,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(100),
+                                                    border: Border.all(width: .5,color: Colors.blue),
+                                                  ),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons.event,
+                                                      color: appColor,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  'Reschedule',
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: 10,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
                             ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Enter date',
-                              style: GoogleFonts.openSans(
-                                  fontSize: 13,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
+                        );
+                      },),
+                  )
+                ],
+              ),
+              Consumer<HomePageProvider>(
+                builder: (BuildContext context, value, Widget? child) {
+                  return value.skip ? Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(.85),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: brownishColor,width: .2)
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        value.updateSkip(false);
+                                      },
+                                      child: Icon(
+                                        Icons.arrow_back_sharp,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Why are you skipping this dose?',
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: reasonsForSkipping.length,
+                                    physics: BouncingScrollPhysics(),
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return CheckboxListTile(
+                                        side: BorderSide(color: Colors.black38),
+                                        dense: true,
+                                        checkColor: Colors.green,
+                                        activeColor: Colors.white,
+                                        value: _selectedItems.contains(reasonsForSkipping[index]),
+                                        title: Text(reasonsForSkipping[index],
+                                          style: GoogleFonts.openSans(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400
+                                          ),),
+                                        controlAffinity: ListTileControlAffinity.leading,
+                                        onChanged: (isChecked) => _itemChange(reasonsForSkipping[index], isChecked!),
+                                      );
+                                    },),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    value.updateSkip(false);
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.35,
+                                    height: MediaQuery.of(context).size.height * 0.05,
+                                    decoration: BoxDecoration(
+                                      color: appColor.withOpacity(.8),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Save',
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                            height: 20,
+                        ],
+                      )
+                  ) : Container();
+                },),
+              Consumer<HomePageProvider>(
+                builder: (BuildContext context, value, Widget? child) {
+                  return value.takeMeds ? Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(.85),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: brownishColor,width: .2)
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        value.updateTakeMeds(false);
+                                      },
+                                      child: Icon(
+                                        Icons.arrow_back_sharp,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'When did you take this med?',
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: medTaken.length,
+                                    physics: BouncingScrollPhysics(),
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return CheckboxListTile(
+                                        side: BorderSide(color: Colors.black38),
+                                        dense: true,
+                                        checkColor: Colors.green,
+                                        activeColor: Colors.white,
+                                        value: _selectedItemsMedTaken.contains(medTaken[index]),
+                                        title: Text(medTaken[index],
+                                          style: GoogleFonts.openSans(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400
+                                          ),),
+                                        controlAffinity: ListTileControlAffinity.leading,
+                                        onChanged: (isChecked) => _itemChangeMedList(medTaken[index], isChecked!),
+                                      );
+                                    },),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    value.updateTakeMeds(false);
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.35,
+                                    height: MediaQuery.of(context).size.height * 0.05,
+                                    decoration: BoxDecoration(
+                                      color: appColor.withOpacity(.8),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Save',
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
                           ),
-                          Card(
-                            elevation: 1,
-                            child: Container(
-                              height: 50,
-                              child: Row(
+                        ],
+                      )
+                  ) : Container();
+                },),
+              Consumer<HomePageProvider>(builder: (BuildContext context, value, Widget? child) {
+                return value.medReschedule ? Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(.85),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: brownishColor,width: .2)
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
                                 children: [
                                   SizedBox(
                                     width: 20,
                                   ),
-                                  Expanded(
-                                    child: Text(
-                                        DateFormat("dd MMM").format(scheduledDate),
-                                      style: GoogleFonts.openSans(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black
-                                      ),
-                                    ),
-                                  ),
                                   GestureDetector(
-                                    onTap: ()async{
-                                      DateTime? time = await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(2022),
-                                          lastDate: DateTime(2025));
-                                      if(time != null){
-                                        setState(() {
-                                          scheduledDate = time;
-                                        });
-                                      }
+                                    onTap: (){
+                                      value.updateMedReschedule(false);
                                     },
                                     child: Icon(
-                                      Icons.arrow_forward_ios_outlined,
-                                      color: lightColor,
+                                      Icons.arrow_back_sharp,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     width: 10,
-                                  )
+                                  ),
+                                  Text(
+                                    'Reschedule for',
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                 ],
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Enter Time',
-                              style: GoogleFonts.openSans(
-                                  fontSize: 13,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Card(
-                            elevation: 1,
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 150,
-                                  child: TextFormField(
-                                    // controller: _emailController,
-                                    keyboardType: TextInputType.text,
-                                    textInputAction: TextInputAction.done,
-                                    decoration: InputDecoration(
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      contentPadding: EdgeInsets.only(left: 10),
-                                      hintText: 'Hour',
-                                      hintStyle: GoogleFonts.openSans(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Enter date',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
                                 ),
-                                Container(
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Card(
+                                elevation: 1,
+                                child: Container(
                                   height: 50,
-                                  width: 150,
-                                  child: TextFormField(
-                                    // controller: _emailController,
-                                    keyboardType: TextInputType.text,
-                                    textInputAction: TextInputAction.done,
-                                    decoration: InputDecoration(
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      hintText: 'Min',
-                                      hintStyle: GoogleFonts.openSans(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(child: SizedBox(),),
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 40,
-                                      height: 25,
-                                      decoration: BoxDecoration(
-                                        color: selectedTime == 1 ? appColor.withOpacity(.30) : Colors.white
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 20,
                                       ),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: (){
-                                            setState(() {
-                                              selectedTime = 1;
-                                            });
-                                          },
-                                          child: Text(
-                                            'AM',
-                                            style: GoogleFonts.openSans(
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat("dd MMM").format(scheduledDate),
+                                          style: GoogleFonts.openSans(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black
-                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),Container(
-                                      width: 40,
-                                      height: 25,
-                                      decoration: BoxDecoration(
-                                          color: selectedTime == 2 ? appColor.withOpacity(.30) : Colors.white
-                                      ),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: (){
+                                      GestureDetector(
+                                        onTap: ()async{
+                                          DateTime? time = await showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime(2022),
+                                              lastDate: DateTime(2025));
+                                          if(time != null){
                                             setState(() {
-                                              selectedTime = 2;
+                                              scheduledDate = time;
                                             });
-                                          },
-                                          child: Text(
-                                            'PM',
-                                            style: GoogleFonts.openSans(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.black
-                                            ),
-                                          ),
+                                          }
+                                        },
+                                        child: Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                          color: lightColor,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                medReschedule = false;
-                              });
-                            },
-                            child: Center(
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                height: MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                  color: appColor.withOpacity(.8),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Save',
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                      const SizedBox(
+                                        width: 10,
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Enter Time',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Card(
+                                  elevation: 1,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 50,
+                                        width: 150,
+                                        child: TextFormField(
+                                          // controller: _emailController,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.done,
+                                          decoration: InputDecoration(
+                                            enabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            contentPadding: EdgeInsets.only(left: 10),
+                                            hintText: 'Hour',
+                                            hintStyle: GoogleFonts.openSans(
+                                                fontSize: 12,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 50,
+                                        width: 150,
+                                        child: TextFormField(
+                                          // controller: _emailController,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.done,
+                                          decoration: InputDecoration(
+                                            enabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            hintText: 'Min',
+                                            hintStyle: GoogleFonts.openSans(
+                                                fontSize: 12,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(child: SizedBox(),),
+                                      Column(
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            height: 25,
+                                            decoration: BoxDecoration(
+                                                color: selectedTime == 1 ? appColor.withOpacity(.30) : Colors.white
+                                            ),
+                                            child: Center(
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  setState(() {
+                                                    selectedTime = 1;
+                                                  });
+                                                },
+                                                child: Text(
+                                                  'AM',
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w400,
+                                                      color: Colors.black
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),Container(
+                                            width: 40,
+                                            height: 25,
+                                            decoration: BoxDecoration(
+                                                color: selectedTime == 2 ? appColor.withOpacity(.30) : Colors.white
+                                            ),
+                                            child: Center(
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  setState(() {
+                                                    selectedTime = 2;
+                                                  });
+                                                },
+                                                child: Text(
+                                                  'PM',
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w400,
+                                                      color: Colors.black
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  )
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  value.updateMedReschedule(false);
+                                },
+                                child: Center(
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.35,
+                                    height: MediaQuery.of(context).size.height * 0.05,
+                                    decoration: BoxDecoration(
+                                      color: appColor.withOpacity(.8),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Save',
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-            ) : Container(),
-          ],
-        )
+                        ),
+                      ],
+                    )
+                ) : Container();
+              },)
+            ],
+          )
+        ),
       ),
     );
   }

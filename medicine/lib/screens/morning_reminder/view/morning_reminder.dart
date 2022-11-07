@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
+import 'package:medicine/screens/morning_reminder/morningreminder_provider/morning_provider.dart';
 import 'package:provider/provider.dart';
 
 class MorningReminderScreen extends StatefulWidget {
@@ -13,6 +14,7 @@ class MorningReminderScreen extends StatefulWidget {
 
 class _MorningReminderScreenState extends State<MorningReminderScreen> {
   String time = '08:00 AM';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class _MorningReminderScreenState extends State<MorningReminderScreen> {
                   Padding(
                     padding: EdgeInsets.only(top: 5),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.pop(context);
                       },
                       child: Icon(
@@ -59,7 +61,8 @@ class _MorningReminderScreenState extends State<MorningReminderScreen> {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02),
               child: Text(
                 'Reminder',
                 style: GoogleFonts.openSans(
@@ -73,8 +76,9 @@ class _MorningReminderScreenState extends State<MorningReminderScreen> {
               height: MediaQuery.of(context).size.height * 0.01,
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02,
-              right: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02,
+                  right: MediaQuery.of(context).size.height * 0.02),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -88,23 +92,25 @@ class _MorningReminderScreenState extends State<MorningReminderScreen> {
                   ),
                   Transform.scale(
                     scale: 1,
-                    child: Consumer<LoginProvider>(builder: (BuildContext context, value, Widget? child) {
-                      return Checkbox(
-                          activeColor: Colors.white,
-                          checkColor: Colors.green,
-                          value: value.rememberMe,
-                          splashRadius: 30,
-                          onChanged: (val) {
-                            value.updateRememberMe(val!);
-                          }
-                      );
-                    },),
+                    child: Consumer<MorningProvider>(
+                      builder: (BuildContext context, value, Widget? child) {
+                        return Checkbox(
+                            activeColor: Colors.white,
+                            checkColor: Colors.green,
+                            value: value.reminder,
+                            splashRadius: 30,
+                            onChanged: (val) {
+                              value.updateReminder(val!);
+                            });
+                      },
+                    ),
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.02),
               child: Text(
                 'A reminder to take your meds with you when you leave home',
                 style: GoogleFonts.openSans(
@@ -117,52 +123,67 @@ class _MorningReminderScreenState extends State<MorningReminderScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
-              child: Text(
-                'Set Time',
-                style: GoogleFonts.openSans(
-                  color: settingFontColor,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
-              child: GestureDetector(
-                onTap: ()async{
-                  TimeOfDay? picked = await showTimePicker(
-                    context: context, initialTime: TimeOfDay.fromDateTime(DateTime.now()),);
-                  if(picked != null){
-                    time = picked.format(context);
-                    setState(() {});
-                  }
-                  },
-                child: Text(
-                  time,
-                  style: GoogleFonts.openSans(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
+            Consumer<MorningProvider>(
+              builder: (BuildContext context, value, Widget? child) {
+                return value.reminder
+                    ? Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left:
+                                    MediaQuery.of(context).size.height * 0.02),
+                            child: Text(
+                              'Set Time',
+                              style: GoogleFonts.openSans(
+                                color: settingFontColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left:
+                                    MediaQuery.of(context).size.height * 0.02),
+                            child: GestureDetector(
+                              onTap: () async {
+                                TimeOfDay? picked = await showTimePicker(
+                                  context: context,
+                                  initialTime:
+                                      TimeOfDay.fromDateTime(DateTime.now()),
+                                );
+                                if (picked != null) {
+                                  time = picked.format(context);
+                                  setState(() {});
+                                }
+                              },
+                              child: Text(
+                                time,
+                                style: GoogleFonts.openSans(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container();
+              },
             ),
             Expanded(child: SizedBox()),
             Center(
               child: Card(
                 elevation: 3,
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                  BorderRadius.circular(100.0),
+                  borderRadius: BorderRadius.circular(100.0),
                 ),
                 child: GestureDetector(
-                  onTap: (){
-                  },
+                  onTap: () {},
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: MediaQuery.of(context).size.height * 0.055,

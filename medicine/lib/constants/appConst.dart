@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 const appColor = Color(0xFF637EC1);
 const tabColor = Color(0xFF8B9FD5);
@@ -15,14 +16,12 @@ const containerColor = Color(0xffA6B5DC);
 const lightColor = Color(0xffC0BDC9);
 
 showToast({required String text, required BuildContext context}) {
-  final snackBar = SnackBar(
-    content: Text(
-      text,
-      style: const TextStyle(color: Colors.black87),
-    ),
-    backgroundColor: Colors.red,
+  Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: appColor,
+      textColor: Colors.white
   );
-  return ScaffoldMessenger.of(context)
-    ..removeCurrentSnackBar()
-    ..showSnackBar(snackBar);
 }

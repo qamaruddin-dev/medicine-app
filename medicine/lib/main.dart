@@ -5,20 +5,25 @@ import 'package:medicine/screens/add_medication/view/addMedication_page.dart';
 import 'package:medicine/screens/appointments_screen/appointment_provider/appointment_provider.dart';
 import 'package:medicine/screens/appointments_screen/view/appointment_screen.dart';
 import 'package:medicine/screens/doctors_screen/doctor_provider/doctor_provider.dart';
+import 'package:medicine/screens/evening_reminder/evening_provider/evening_provider.dart';
 import 'package:medicine/screens/home_screen/homePage_provider/homePage_provider.dart';
 import 'package:medicine/screens/login_screen/login_provider/login_provider.dart';
 import 'package:medicine/screens/login_screen/view/login_page.dart';
-import 'package:medicine/screens/main_tab.dart';
+import 'package:medicine/screens/main_tab/main_tab.dart';
+import 'package:medicine/screens/main_tab/maintab_provider/mainTab_provider.dart';
 import 'package:medicine/screens/medication_form/medicationForm_provider/medicationForm_provider.dart';
 import 'package:medicine/screens/medication_form/view/medicationForm_page.dart';
 import 'package:medicine/screens/medication_screen/medication_provider/medication_provider.dart';
 import 'package:medicine/screens/medication_strength/medicationStrength_provider/medicationStrength_provider.dart';
 import 'package:medicine/screens/medication_strength/view/medicationStrength_page.dart';
 import 'package:medicine/screens/more_screen/morePage_provider/morepage_provider.dart';
+import 'package:medicine/screens/morning_reminder/morningreminder_provider/morning_provider.dart';
 import 'package:medicine/screens/refill_screen/refill_provider/refill_provider.dart';
 import 'package:medicine/screens/signup_screen/signup_provider/signup_provider.dart';
 import 'package:medicine/screens/signup_screen/view/signup_page.dart';
 import 'package:medicine/screens/updates_screen/updates_provider/updates_provider.dart';
+import 'package:medicine/screens/weekend_mode/weekend_provider/weekend_provider.dart';
+import 'package:medicine/screens/weekly_summary/weekly_provider/weekly_provider.dart';
 import 'package:medicine/screens/why_medication/view/whyMedication_page.dart';
 import 'package:medicine/screens/why_medication/whyMedication_provider/whyMedication_provider.dart';
 import 'package:medicine/services/Scroll_behavior.dart';
@@ -50,6 +55,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: AppointmentProvider()),
         ChangeNotifierProvider.value(value: DoctorProvider()),
         ChangeNotifierProvider.value(value: RefillProvider()),
+        ChangeNotifierProvider.value(value: MainTabProvider()),
+        ChangeNotifierProvider.value(value: MorningProvider()),
+        ChangeNotifierProvider.value(value: EveningProvider()),
+        ChangeNotifierProvider.value(value: WeeklyProvider()),
+        ChangeNotifierProvider.value(value: WeekendProvider()),
       ],
       child: GetMaterialApp(
         builder: (context, child) => ResponsiveWrapper.builder(

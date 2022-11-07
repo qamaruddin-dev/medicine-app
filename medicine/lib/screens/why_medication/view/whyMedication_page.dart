@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine/constants/appConst.dart';
-import 'package:medicine/screens/main_tab.dart';
+import 'package:medicine/screens/main_tab/main_tab.dart';
 
 class WhyMedicationPage extends StatefulWidget {
   const WhyMedicationPage({Key? key}) : super(key: key);

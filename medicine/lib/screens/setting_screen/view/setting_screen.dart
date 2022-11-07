@@ -117,11 +117,11 @@ class _SettingScreenState extends State<SettingScreen> {
                       tab: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const PasscodeScreen()));
                       }),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  rowWithIconText(context: context,text: 'Open Account',image: 'assets/svg_icons/openaccount_icon.svg',
-                      tab: (){}),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.height * 0.03,
+                  // ),
+                  // rowWithIconText(context: context,text: 'Open Account',image: 'assets/svg_icons/openaccount_icon.svg',
+                  //     tab: (){}),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
